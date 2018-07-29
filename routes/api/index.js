@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const bookRoutes = require("./tests");
+const testRoutes = require("./tests");
 
-// Book routes
-router.use("/", bookRoutes);
+// test routes
+router.use("/tests", testRoutes);
 
 module.exports = router;
