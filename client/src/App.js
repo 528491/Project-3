@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import './App.css';
 // import "./pages/HelloWorld";
 import HelloWorld from './pages/HelloWorld';
+import Home from "./pages/Home/Home";
 
 class App extends Component {
  
@@ -33,6 +34,7 @@ class App extends Component {
 
       <div>
         <HelloWorld/>
+        <Home />
       </div>
     );
   }
