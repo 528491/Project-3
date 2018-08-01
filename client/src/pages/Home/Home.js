@@ -7,38 +7,38 @@ class Home extends Component {
       username: "",
       password: ""
     };
-  
+
     handleInputChange = event => {
       const { name, value } = event.target;
       this.setState({
         [name]: value
       });
     };
-  
+
     handleFormSubmit = event => {
       event.preventDefault();
-      axios.post("/api/users", this.state).then(function(response){
+      axios.post("/api/users/signup", this.state).then(function(response){
         console.log(response);
       }).catch(function(err){
         console.log(err);
       })
     };
-  
 
-    
-  
+
+
+
     render() {
       return (
         <Container>
             <Form>
             <FormGroup>
             <Label for="exampleEmail">Email</Label>
-            <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" 
+            <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder"
             onChange = {this.handleInputChange}/>
           </FormGroup>
           <FormGroup>
             <Label for="examplePassword">Password</Label>
-            <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" 
+            <Input type="password" name="password" id="examplePassword" placeholder="password placeholder"
             onChange = {this.handleInputChange}/>
           </FormGroup>
           <Button onClick={this.handleFormSubmit}>Submit</Button>
@@ -48,6 +48,5 @@ class Home extends Component {
       )
     }
   }
-  
+
   export default Home;
-  
