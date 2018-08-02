@@ -38,6 +38,8 @@ router.post("/", function(req, res) {
   //   res.status(400).send("unable to save to database");
   // });
 
+  newUser.markModified("email");
+  newUser.markModified("password");
   newUser.save((err, user) => {
     if (err) {
       res.status(400).send("Server error.");
