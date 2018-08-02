@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const usersController = require("../../controllers/usersController");
-// const User = require("../../models/user");
-const models = require("../../models");
-const userSchema = require("mongoose").model("User").schema;
+const User = require("../../models/user");
+// const models = require("../../models");
+// const userSchema = require("mongoose").model("User").schema;
 
 console.log("We are in server.js");
 
@@ -17,19 +17,38 @@ router.post("/", function(req, res) {
   // });
 
   // var userData = mongoose.model("userData",User);
-  var userData = new models.User({
-    email: req.body.email,
-    password: req.body.password
-  });
-  userData.save(function(err) {
-    if (err) return err;
+  // var userData = new User({
+  //   email: req.body.email,
+  //   password: req.body.password
+  // });
+
+  const newUser = new User();
+  newUser.email = req.body.email;
+  newUser.password = req.body.password;
+
+  // userData.save(function(err) {
+  //   if (err) return err;
+  // })
+
+  // newUser.save()
+  // .then(() => {
+  //   res.send("item saved to database");
+  // })
+  // .catch(err => {
+  //   res.status(400).send("unable to save to database");
+  // });
+
+  newUser.save((err, user) => {
+    if (err) {
+      res.status(400).send("Server error.");
+    }
+
+    // res.send("Signed up.");
+    // console.log("Signed up.");
+    else {
+      res.send("Signed up.");
+    }
   })
-  .then(item => {
-    res.send("item saved to database");
-  })
-  .catch(err => {
-    res.status(400).send("unable to save to database");
-  });
 
 
 });

@@ -5,7 +5,8 @@ import * as API from "./../../utils/API.js";
 
 class Home extends Component {
     state = {
-      username: "",
+      // username: "",
+      email: "",
       password: ""
     };
   
