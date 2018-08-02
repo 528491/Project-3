@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Container, Row, Col, Jumbotron, Card, Form, Article, Footer, FormGroup, Label, Input, Button} from 'reactstrap';
 import axios from "axios";
+import * as API from "./../../utils/API.js";
 
 class Home extends Component {
     state = {
@@ -17,11 +18,20 @@ class Home extends Component {
   
     handleFormSubmit = event => {
       event.preventDefault();
-      axios.post("/api/users", this.state).then(function(response){
-        console.log(response);
-      }).catch(function(err){
-        console.log(err);
+      console.log(axios.post("http://localhost:3001/api/users", this.state)
+      .then(function(data) {
+        console.log(data);
       })
+      .catch(error => {
+        console.log(error.response);
+      }))
+
+      
+      // API.getUsers(this.state).then(function(response){
+      //   console.log(response);
+      // }).catch(function(err){
+      //   console.log(err);
+      // })
     };
   
 

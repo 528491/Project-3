@@ -1,9 +1,13 @@
 import axios from "axios";
 
-export default {
+const API = {
 
-    getTests: function(params){
-        return axios.get("/api/tests");
+    // getTests: function(params){
+    //     return axios.get("/api/tests");
+    // }
+
+    getUsers: function(params) {
+      return axios.get("/api/users", {params});
     }
   /*
   getArticles: function(params) {
@@ -23,3 +27,5 @@ export default {
   }
   */
 };
+
+export default API;
