@@ -1,6 +1,6 @@
 // const passport = require('passport');
 const User       = require('../models/user');
-
+const passport = require("passport");
 
 module.exports = {
   signUp: function(req, res){
@@ -19,5 +19,5 @@ module.exports = {
     .catch(function(err) {
       res.json(err);
     });
-  }  
+  }
 };

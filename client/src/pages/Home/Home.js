@@ -1,23 +1,26 @@
 import React, { Component } from "react";
 import {Container, Row, Col, Jumbotron, Card, Form, Article, Footer, FormGroup, Label, Input, Button} from 'reactstrap';
 import axios from "axios";
+import { Redirect } from 'react-router-dom';
 import * as API from "./../../utils/API.js";
+import SignUp from "./../SignUp";
+
 
 class Home extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
         // username: "",
         email: "",
-        password: ""
+        password: "",
+        authenticated: false
       };
 
   }
 
     handleInputChange = event => {
       const { name, value } = event.target;
-      console.log(this.state);
       this.setState({
         [name]: value
       });
@@ -25,11 +28,19 @@ class Home extends Component {
 
     handleFormSubmit = event => {
       event.preventDefault();
-      axios.post("http://localhost:3001/api/users", 
-      this.state
-      )
-      .then(function(data) {
+      axios.post("http://localhost:3001/api/users",
+      {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then((data) => {
         console.log(data);
+
+        if(data.data.success) {
+            this.setState({authenticated: true})
+        }
+
+
       })
       .catch(error => {
         console.log(error.response);
@@ -47,7 +58,11 @@ class Home extends Component {
 
 
     render() {
-      console.log(this.state);
+      if(this.state.authenticated === true) {
+        return (<Redirect to='/signup' />);
+      }
+
+
       return (
         <Container>
             <Form>
