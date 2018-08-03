@@ -7,9 +7,9 @@ const User = require("../../models/user");
 console.log("We are in server.js");
 
   // .post(usersController.signUp({username: "req.body.username", password: "req.body.password"}), "response");
-router.post("/", function(req, res) {
+// router.post("/", function(req, res) {
 
-  console.log(req.body);
+  // console.log(req.body);
   // console.log("hit route.");
   // var userData = new models.User({
   //   username: req.body.username,
@@ -22,9 +22,9 @@ router.post("/", function(req, res) {
   //   password: req.body.password
   // });
 
-  const newUser = new User();
-  newUser.email = req.body.email;
-  newUser.password = req.body.password;
+  // const newUser = new User();
+  // newUser.email = req.body.email;
+  // newUser.password = req.body.password;
 
   // userData.save(function(err) {
   //   if (err) return err;
@@ -38,22 +38,24 @@ router.post("/", function(req, res) {
   //   res.status(400).send("unable to save to database");
   // });
 
-  newUser.markModified("email");
-  newUser.markModified("password");
-  newUser.save((err, user) => {
-    if (err) {
-      res.status(400).send("Server error.");
-    }
+  // newUser.markModified("email");
+  // newUser.markModified("password");
+  // newUser.save((err, user) => {
+  //   if (err) {
+  //     res.status(400).send("Server error.");
+  //   }
 
-    // res.send("Signed up.");
-    // console.log("Signed up.");
-    else {
-      res.send("Signed up.");
-    }
-  })
+  //   // res.send("Signed up.");
+  //   // console.log("Signed up.");
+  //   else {
+  //     res.send("Signed up.");
+  //   }
+  // })
 
 
-});
+// });
+
+router.post("/", usersController.signUp);
 
 
 module.exports = router;
