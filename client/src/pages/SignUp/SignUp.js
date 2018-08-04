@@ -59,7 +59,7 @@ class Home extends Component {
 
     render() {
       if(this.state.authenticated === true) {
-        return (<Redirect to='/signup' />);
+        return (<Redirect to='/' />);
       }
 
 
