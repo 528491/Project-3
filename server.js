@@ -1,9 +1,12 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const routes = require("./routes");
-const app = express();
-// const passport 			 = require("./config/passport");
+const express        = require("express");
+const bodyParser     = require("body-parser");
+const mongoose       = require("mongoose");
+const routes         = require("./routes");
+const app            = express();
+const session        = require("express-session");
+const passport 			 = require("./config/passport");
+const authCheck      = require("./config/middleware/attachAuthenticationStatus");
+
 
 const PORT = process.env.PORT || 3001;
 
@@ -28,11 +31,12 @@ app.use(function(req, res, next) {
   next();
 });
 
-// app.use(session({ secret: config.sessionKey, resave: true, saveUninitialized: true }));
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use(authCheck);
+app.use(session({ secret:"lies lies lies so many lies", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(authCheck);
 
+require("./config/databaseImplementation");
 
 // Connect to the Mongo DB
 // mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist");

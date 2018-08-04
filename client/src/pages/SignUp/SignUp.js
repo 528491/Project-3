@@ -53,6 +53,26 @@ class SignUp extends Component {
       // })
     };
 
+    handleLogin = event => {
+      event.preventDefault();
+      axios.get("http://localhost:3001/api/users/login",
+      {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then((data) => {
+        console.log(data);
+
+        if(data.data.success) {
+            this.setState({authenticated: true})
+        }
+
+
+      })
+      .catch(error => {
+        console.log(error.response);
+      });
+    };
 
 
 
@@ -75,7 +95,8 @@ class SignUp extends Component {
             <Input type="password" name="password" id="examplePassword" placeholder="password placeholder"
             onChange={this.handleInputChange}/>
           </FormGroup>
-          <Button onClick={this.handleFormSubmit}>Submit</Button>
+          <Button onClick={this.handleFormSubmit}>Register</Button>
+          <Button onClick = {this.handleLogin}>Log In</Button>
           </Form>
 
         </Container>
