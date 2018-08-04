@@ -3,10 +3,9 @@ import {Container, Row, Col, Jumbotron, Card, Form, Article, Footer, FormGroup, 
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
 import * as API from "./../../utils/API.js";
-import SignUp from "./../SignUp";
 
 
-class Home extends Component {
+class SignUp extends Component {
 
   constructor(props) {
     super(props);
@@ -84,4 +83,4 @@ class Home extends Component {
     }
   }
 
-  export default Home;
+  export default SignUp;

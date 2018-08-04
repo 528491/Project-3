@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 // import {Container} from "reactstrap";
 import {Container, Row, Col, Jumbotron, Card, Form, Article, Footer, FormGroup, Label, Input, Button} from 'reactstrap';
+import { Link, Redirect } from 'react-router-dom';
+import SignUp from "./../SignUp";
 
 
-class SignUp extends Component {
+
+
+class Home extends Component {
 
 // render() {
 //   return (<div>
@@ -14,7 +18,7 @@ class SignUp extends Component {
   render() {
     return (
       <Container>
-          <Form>
+          {/* <Form>
           <FormGroup>
           <Label for="exampleEmail">Email</Label>
           <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder"
@@ -26,7 +30,13 @@ class SignUp extends Component {
           onChange={this.handleInputChange}/>
         </FormGroup>
         <Button onClick={this.handleFormSubmit}>Submit</Button>
-        </Form>
+        </Form> */}
+
+          {/* <Link to={"/signup"} component={Signup}> Register </Link> */}
+          <Link to = "/signup">
+            Link to Login
+          </Link>
+
 
       </Container>
     )
@@ -37,4 +47,4 @@ class SignUp extends Component {
 
 
 
-export default SignUp;
+export default Home;
