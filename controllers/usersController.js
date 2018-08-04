@@ -10,7 +10,8 @@ module.exports = {
     const newUser = new User();
 
     newUser.email = req.body.email;
-    newUser.password = req.body.password;
+    // newUser.password = req.body.password;
+    newUser.password = newUser.generateHash(req.body.password);
 
     newUser.save()
     .then(function() {
