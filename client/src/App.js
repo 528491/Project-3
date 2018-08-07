@@ -38,7 +38,7 @@ class App extends Component {
     return (
       <Container>
         <AppNavbar/>
-        <LoginModal buttonLabel="Login" />
+        {/* <LoginModal buttonLabel="Login" /> */}
 
         <Router>
           <Switch>

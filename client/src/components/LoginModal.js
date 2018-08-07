@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Label, Form, FormGroup, Input, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Container, NavLink, Label, Form, FormGroup, Input, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
 
@@ -86,7 +86,14 @@ class LoginModal extends React.Component {
 
     return (
       <div>
-        <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+        {/* <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button> */}
+        {/* <NavLink href="#" onClick={this.toggle}>
+            {this.props.buttonLabel}
+        </NavLink> */}
+
+        <p onClick={this.toggle}>
+            {this.props.buttonLabel}
+        </p>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Log In</ModalHeader>
           <ModalBody>
