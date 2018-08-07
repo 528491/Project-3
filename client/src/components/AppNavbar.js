@@ -31,16 +31,16 @@ class AppNavbar extends React.Component {
                   <NavItem>
                     <NavLink href="/">Home</NavLink>
                   </NavItem>
+
+                <NavItem>
+                  <NavLink href="/login">Login</NavLink>
+                </NavItem>
+
+
                   <NavItem>
                     {/* <NavLink href="https://github.com/reactstrap/reactstrap">Saved Articles</NavLink> */}
                     <NavLink href="/signup">Register</NavLink>
                   </NavItem>
-                  {/* <NavItem>
-                    <Button className="mr-2" color="success">Scrape New Articles!</Button>
-                  </NavItem>
-                  <NavItem>
-                    <Button color="danger">Clear Articles</Button>
-                  </NavItem> */}
                 </Nav>
 
               {/* </Collapse> */}
