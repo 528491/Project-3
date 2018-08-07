@@ -13,6 +13,7 @@ import './App.css';
 // import "./pages/HelloWorld";
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/SignUp/SignUp";
+import AppNavbar from "./components/AppNavbar"
 
 class App extends Component {
 
@@ -33,12 +34,16 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <div>
+        <AppNavbar/>
+        <Router>
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route path="/signup" component={SignUp}/>
         </Switch>
       </Router>
+      </div>
+      
     );
   }
 }
