@@ -14,7 +14,8 @@ import './App.css';
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/SignUp/SignUp";
 import AppNavbar from "./components/AppNavbar";
-import {Container} from "reactstrap"
+import {Container} from "reactstrap";
+import LoginModal from "./components/LoginModal";
 
 class App extends Component {
 
@@ -37,6 +38,8 @@ class App extends Component {
     return (
       <Container>
         <AppNavbar/>
+        <LoginModal buttonLabel="Login" />
+
         <Router>
           <Switch>
             <Route exact path="/" component={Home}/>
