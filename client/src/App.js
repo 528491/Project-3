@@ -85,11 +85,7 @@ class App extends Component {
       <Container>
         <AppNavbar/>
         <Router>
-          <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/signup" component={SignUp}/>
-          </Switch>
-      
+
         <Switch>
           <Route exact path="/" render={props =>
             !this.state.authenticated ? this.redirect() :
@@ -120,7 +116,7 @@ class App extends Component {
         </Switch>
       </Router>
      </Container>
-    
+
     );
   }
 }
