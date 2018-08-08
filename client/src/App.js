@@ -85,6 +85,7 @@ class App extends Component {
       <Container>
         <AppNavbar/>
         <Router>
+
           {/* <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/signup" component={SignUp}/>
@@ -120,7 +121,7 @@ class App extends Component {
         </Switch>
       </Router>
      </Container>
-    
+
     );
   }
 }

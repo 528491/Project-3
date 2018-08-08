@@ -6,8 +6,6 @@ import SignUp from "./../SignUp";
 import AboutSection from "./AboutSection";
 import CardDisplay from "./CardDisplay";
 import Space from "../../components/Space";
-import {Container } from 'reactstrap';
-import { Link  } from 'react-router-dom';
 
 class Home extends Component {
 
@@ -41,7 +39,7 @@ class Home extends Component {
         <CardDisplay/>
 
         <Space/>
-        <Space/>  
+        <Space/>
           This is the Home Page you'd see if you were logged in
           <Link to = "/signup">
             Link to Register/Login
