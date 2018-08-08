@@ -16,8 +16,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import AppNavbar from "./components/AppNavbar";
 import {Container} from "reactstrap";
 import LoginModal from "./components/LoginModal";
-// import CalendarDisplay from "./pages/CalendarDisplay/CalendarDisplay";
-import CalendarDisplay from "./pages/Calendar/CalendarDisplay";
+import CalendarDisplay from "./pages/CalendarDisplay/CalendarDisplay";
 
 class App extends Component {
 
