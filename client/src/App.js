@@ -86,7 +86,7 @@ class App extends Component {
     console.log(this.state);
     return (
       <Container>
-        
+
         <AppNavbar/>
         {/* <LoginModal buttonLabel="Login" /> */}
 
@@ -127,6 +127,8 @@ class App extends Component {
                   authenticated={this.state.authenticated}
                 />}
             />
+
+            <Route exact path="/calendar" component={CalendarDisplay}/>
             
           </Switch>
 
