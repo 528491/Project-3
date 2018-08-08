@@ -1,7 +1,7 @@
 import React from "react";
 import dateFns from "date-fns";
 
-class Calendar extends React.Component {
+class TestCalendar extends React.Component {
 
     state = {
         currentMonth: new Date(),
@@ -142,4 +142,4 @@ class Calendar extends React.Component {
     }
 }
 
-export default Calendar;
+export default TestCalendar;
