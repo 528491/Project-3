@@ -54,30 +54,50 @@ class Calendar extends React.Component {
         let days = [];
         let day = startDate;
         let formattedDate = "";
+
+        // While we are on the current month
         while (day <= endDate) {
+
+            // Loops through seven times. display div boxes for each of the days of the week.
             for (let i = 0; i < 7; i++) {
                 formattedDate = dateFns.format(day, dateFormat);
                 const cloneDay = day;
+
+                // Pushes the following jsx into the "days" array
                 days.push(
+
+                    // This is one day box.
                     <div
                         className={`col cell ${
+
+                        // If it is not the case that the day and the start of the month are equal,
+                        // set className to "disabled".
+                        // Otherwise, if the day and the selected date are equal,
+                        // set className to "selected."
+                        // Otherwise, don't make a new className.
                         !dateFns.isSameMonth(day, monthStart)
                             ? "disabled"
                             : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
                         }`}
+
                         key={day}
                         onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
                     >
                         <span className="number">{formattedDate}</span>
                         <span className="bg">{formattedDate}</span>
                     </div>
+
                 );
+
+                // Change the "day" variable
+                // Adds one day to the "day" variable.
+                // Goes to next iteration.
                 day = dateFns.addDays(day, 1);
             }
 
             rows.push(
                 <div className="row" key={day}>
-                {days}
+                    {days}
                 </div>
             );
 
