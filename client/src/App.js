@@ -16,6 +16,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import AppNavbar from "./components/AppNavbar";
 import {Container} from "reactstrap";
 import LoginModal from "./components/LoginModal";
+import CalendarDisplay from "./pages/CalendarDisplay/CalendarDisplay";
 
 class App extends Component {
 
@@ -44,6 +45,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/signup" component={SignUp}/>
+            <Route path="/calendar" component={CalendarDisplay}/>
           </Switch>
         </Router>
       </Container>
