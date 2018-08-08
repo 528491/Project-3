@@ -7,9 +7,6 @@ import AboutSection from "./AboutSection";
 import CardDisplay from "./CardDisplay";
 import Space from "../../components/Space";
 
-
-
-
 class Home extends Component {
 
   // render() {
@@ -42,7 +39,11 @@ class Home extends Component {
         <CardDisplay/>
 
         <Space/>
-        <Space/>  
+        <Space/>
+          This is the Home Page you'd see if you were logged in
+          <Link to = "/signup">
+            Link to Register/Login
+          </Link>
 
       </Container>
     )

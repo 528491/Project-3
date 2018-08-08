@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Container, Row, Col, Jumbotron, Card, Form, Article, Footer, FormGroup, Label, Input, Button} from 'reactstrap';
+import {Container, Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
 import * as API from "./../../utils/API.js";
@@ -9,11 +9,12 @@ class SignUp extends Component {
 
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
         // username: "",
         email: "",
         password: "",
-        authenticated: false
+        errors: []
       };
 
   }
@@ -33,10 +34,11 @@ class SignUp extends Component {
         password: this.state.password
       })
       .then((data) => {
-        console.log(data);
+
 
         if(data.data.success) {
-            this.setState({authenticated: true})
+            this.props.authenticate();
+            
         }
 
 
@@ -55,32 +57,28 @@ class SignUp extends Component {
 
     handleLogin = event => {
       event.preventDefault();
-      axios.get("http://localhost:3001/api/users/login",
-      {
-        email: this.state.email,
-        password: this.state.password
-      })
+      axios.post("http://localhost:3001/api/users/login",
+                  this.state)
       .then((data) => {
         console.log(data);
 
         if(data.data.success) {
-            this.setState({authenticated: true})
+            this.props.authenticate();
         }
 
 
       })
       .catch(error => {
-        console.log(error.response);
-      });
-    };
+        console.log(error);
+      })
+    }
 
 
 
     render() {
-      if(this.state.authenticated === true) {
+      if(this.props.authenticated) {
         return (<Redirect to='/' />);
       }
-
 
       return (
         <Container>
