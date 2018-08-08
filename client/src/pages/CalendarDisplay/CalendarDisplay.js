@@ -1,8 +1,8 @@
 import React from "react";
-
 import Calendar from "../../components/Calendar";
-
 import "./CalendarDisplay.css";
+import { Container, Row, Col, Jumbotron, Card, Form, Article, Footer, FormGroup, Label, Input, Button } from 'reactstrap';
+
 
 class CalendarDisplay extends React.Component {
   render() {
@@ -16,9 +16,13 @@ class CalendarDisplay extends React.Component {
             </span>
           </div>
         </header>
-        <main>
-          <Calendar />
-        </main>
+
+        <Row>
+          <Col xs="12">
+              <Calendar />
+          </Col>
+        </Row>
+
       </div>
     );
   }

@@ -59,18 +59,18 @@ class Calendar extends React.Component {
                 formattedDate = dateFns.format(day, dateFormat);
                 const cloneDay = day;
                 days.push(
-                <div
-                    className={`col cell ${
-                    !dateFns.isSameMonth(day, monthStart)
-                        ? "disabled"
-                        : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
-                    }`}
-                    key={day}
-                    onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
-                >
-                    <span className="number">{formattedDate}</span>
-                    <span className="bg">{formattedDate}</span>
-                </div>
+                    <div
+                        className={`col cell ${
+                        !dateFns.isSameMonth(day, monthStart)
+                            ? "disabled"
+                            : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
+                        }`}
+                        key={day}
+                        onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
+                    >
+                        <span className="number">{formattedDate}</span>
+                        <span className="bg">{formattedDate}</span>
+                    </div>
                 );
                 day = dateFns.addDays(day, 1);
             }
