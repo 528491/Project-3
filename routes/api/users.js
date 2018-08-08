@@ -6,7 +6,7 @@ const User = require("../../models/user");
 
 console.log("We are in server.js");
 
+router.post("/login", usersController.login);
 router.post("/", usersController.signUp);
-router.get("/login", usersController.login);
 
 module.exports = router;
