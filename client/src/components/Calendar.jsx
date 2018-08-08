@@ -28,9 +28,13 @@ class Calendar extends React.Component {
             </div>
         );
     }
+
+    // Renders the days of the week at the top of the calendar
     renderDays() {
         const dateFormat = "dddd";
         const days = [];
+
+        // The start of the week
         let startDate = dateFns.startOfWeek(this.state.currentMonth);
         for (let i = 0; i < 7; i++) {
             days.push(
@@ -44,10 +48,10 @@ class Calendar extends React.Component {
 
     renderCells() {
         const { currentMonth, selectedDate } = this.state;
-        const monthStart = dateFns.startOfMonth(currentMonth);
-        const monthEnd = dateFns.endOfMonth(monthStart);
-        const startDate = dateFns.startOfWeek(monthStart);
-        const endDate = dateFns.endOfWeek(monthEnd);
+        const monthStart = dateFns.startOfMonth(currentMonth);      // The start of the month
+        const monthEnd = dateFns.endOfMonth(monthStart);            // The end of the month
+        const startDate = dateFns.startOfWeek(monthStart);          // Days from previous month that complete our starting week
+        const endDate = dateFns.endOfWeek(monthEnd);                // Days from next month that end the last week of our currently selected month
 
         const dateFormat = "D";
         const rows = [];
@@ -55,7 +59,8 @@ class Calendar extends React.Component {
         let day = startDate;
         let formattedDate = "";
 
-        // While we are on the current month
+        // Start at the startDate
+        // While the current day in the loop is less than or equal to the "endDate" constant
         while (day <= endDate) {
 
             // Loops through seven times. display div boxes for each of the days of the week.
@@ -104,6 +109,7 @@ class Calendar extends React.Component {
             days = [];
         }
 
+        // Return all the rows of the calendar
         return <div className="body">{rows}</div>;
 
     }
