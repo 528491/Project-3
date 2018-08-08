@@ -1,5 +1,6 @@
 import React from "react";
 import dateFns from "date-fns";
+import Space from "./Space";
 
 class Calendar extends React.Component {
 
@@ -13,19 +14,29 @@ class Calendar extends React.Component {
     renderHeader() {
         const dateFormat = "MMMM YYYY";
         return (
-            <div className="header row flex-middle">
-                <div className="col col-start">
-                    <div className="icon" onClick={this.prevMonth}>
-                    chevron_left
+            <div>
+                <div className="header row flex-middle">
+                    <div className="col col-start">
+                        <div className="icon" onClick={this.prevMonth}>
+                        chevron_left
+                        </div>
+                    </div>
+                    <div className="col col-center d-flex flex-column">
+                        <span>
+                        {dateFns.format(this.state.currentMonth, dateFormat)}{"\n"}
+                        </span>
+                        {/* <span>{"\n"}</span> */}
+                        {/* <span>Double-click a day</span>
+                        <span>to add an event.</span> */}
+                    </div>
+                    <div className="col col-end" onClick={this.nextMonth}>
+                        <div className="icon">chevron_right</div>
                     </div>
                 </div>
-                <div className="col col-center">
-                    <span>
-                    {dateFns.format(this.state.currentMonth, dateFormat)}
-                    </span>
-                </div>
-                <div className="col col-end" onClick={this.nextMonth}>
-                    <div className="icon">chevron_right</div>
+                <div className="row mt-3 mb-4">
+                    <div className="col-12 text-center">
+                        <h5>Double-click a day to add an event.</h5>
+                    </div>
                 </div>
             </div>
         );
@@ -103,12 +114,15 @@ class Calendar extends React.Component {
                 day = dateFns.addDays(day, 1);
             }
 
+            // After looping seven times.
+            // Pushes the cells in the "days" array to a row in the calendar
             rows.push(
                 <div className="row" key={day}>
                     {days}
                 </div>
             );
 
+            // Clears the "days" array of cells.
             days = [];
         }
 
