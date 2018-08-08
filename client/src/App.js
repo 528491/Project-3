@@ -85,10 +85,10 @@ class App extends Component {
       <Container>
         <AppNavbar/>
         <Router>
-          <Switch>
+          {/* <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/signup" component={SignUp}/>
-          </Switch>
+          </Switch> */}
       
         <Switch>
           <Route exact path="/" render={props =>
