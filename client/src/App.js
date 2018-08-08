@@ -14,6 +14,8 @@ import './App.css';
 // import "./pages/HelloWorld";
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/SignUp/SignUp";
+import AppNavbar from "./components/AppNavbar";
+import {Container} from "reactstrap"
 import Test from "./pages/SignUp/Test";
 import axios from 'axios';
 
@@ -80,7 +82,14 @@ class App extends Component {
     const authenticated = this.state.authenticated;
     console.log(this.state);
     return (
-      <Router>
+      <Container>
+        <AppNavbar/>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route path="/signup" component={SignUp}/>
+          </Switch>
+      
         <Switch>
           <Route exact path="/" render={props =>
             !this.state.authenticated ? this.redirect() :
@@ -110,6 +119,8 @@ class App extends Component {
           />
         </Switch>
       </Router>
+     </Container>
+    
     );
   }
 }
