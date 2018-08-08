@@ -1,6 +1,6 @@
 // const passport = require('passport');
 const User       = require('../models/user');
-const passport = require("passport");
+const Session    = require('../models/session');
 
 module.exports = {
   signUp: function(req, res){
@@ -9,7 +9,7 @@ module.exports = {
 
     const newUser = new User();
 
-    newUser.email = req.body.email;
+    newUser.email = req.body.email.toLowerCase().trim();
     // newUser.password = req.body.password;
     newUser.password = newUser.generateHash(req.body.password);
 
@@ -21,34 +21,75 @@ module.exports = {
       res.json(err);
     });
   },
-  
+
   login: function(req, res){
     console.log("Currently inside usersController login function");
-    return passport.authenticate('local', (err, token, userData) => {
-      if (err) {
+    let { email, password } = req.body;
+    email = email.toLowerCase();
+
+    if(!email) {
+      return res.send({
+        success: false,
+        message: "Email cannot be blank."
+      })
+    }
+
+    if(!password) {
+      return res.send({
+        success: false,
+        message: "Password cannot be blank."
+      });
+    }
+
+
+
+    User.find({
+      email: email
+    }, (err, users) => {
+
+      if(err) {
         console.log(err);
-        if (err.name === 'IncorrectCredentialsError') {
-          return res.status(400).json({
-            success: false,
-            message: err.message
-          });
-        }
-  
-        return res.status(400).json({
+        res.send({
           success: false,
-          message: 'Could not process the form.'
+          message: "Mongo Error",
+          error: err
+        })
+      }
+
+      console.log(users);
+      if(users.length != 1) {
+        console.log("users: ", users);
+        return res.send({
+          success: false,
+          message: 'Error: Invalid',
+          error: ["User find error", ...users]
+        })
+      }
+
+      const user = users[0];
+
+      if(!user.validPassword(password)) {
+        console.log("p dub fail")
+        return res.send({
+          sucess: false,
+          message: "Error: Invalid"
         });
       }
-  
-      console.log(token, "this is the token in users_api.js");
-      console.log(userData, "this is the userData in users_api.js");
-  
-      return res.json({
+
+      const token = Session.generateToken(user);
+
+      console.log("logged in");
+      return res.send({
         success: true,
-        message: 'You have successfully logged in!',
-        token,
-        user: userData
-      })
-    });
-    
-  }};
+        message: 'Valid sign in',
+        token: token,
+        user: user
+      });
+
+   });
+
+
+
+
+  }
+};
