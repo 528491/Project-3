@@ -8,6 +8,8 @@ class Calendar extends React.Component {
         selectedDate: new Date()
     };
 
+    // Renders the header of the calendar, which contains the current month and year
+    // as well as "previous month" and "next month" arrows.
     renderHeader() {
         const dateFormat = "MMMM YYYY";
         return (
@@ -46,6 +48,7 @@ class Calendar extends React.Component {
         return <div className="days row">{days}</div>;
     }
 
+    // Renders the "cells" of the calendar.
     renderCells() {
         const { currentMonth, selectedDate } = this.state;
         const monthStart = dateFns.startOfMonth(currentMonth);      // The start of the month
@@ -114,17 +117,21 @@ class Calendar extends React.Component {
 
     }
 
+    // What happens when user clicks a certain day on the calendar
     onDateClick = day => {
         this.setState({
             selectedDate: day
         });
     }
 
+    // Move to the next month when the "next" arrow is pressed.
     nextMonth = () => {
         this.setState({
             currentMonth: dateFns.addMonths(this.state.currentMonth, 1)
         });
     }
+
+    // Move to the previous month when the "previous" arrow is pressed.
     prevMonth = () => {
         this.setState({
             currentMonth: dateFns.subMonths(this.state.currentMonth, 1)
