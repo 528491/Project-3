@@ -1,6 +1,12 @@
 import React from "react";
 import dateFns from "date-fns";
-import Space from "./Space";
+// import Space from "./Space";
+import "./CalendarCell.css";
+import Space from "../Space";
+
+
+
+
 /* 
 
 Props:
@@ -30,8 +36,12 @@ const CalendarCell = (props) => (
         key={props.day}
         onClick={() => this.onDateClick(dateFns.parse(props.cloneDay))}
     >
-        <span className="number">{props.formattedDate}</span>
-        <span className="bg">{props.formattedDate}</span>
+        <a href = {`/calendar/${dateFns.format(props.currentMonth, "YYYY")}/${dateFns.format(props.currentMonth, "MMMM")}/${props.formattedDate}`} style={{height: '100%', width: '100%'}}>
+            <span className="number">{props.formattedDate}</span>
+            <span className="bg">{props.formattedDate}</span>
+            {/* <span>You have events</span> */}
+
+        </a>
     </div>
 );
 

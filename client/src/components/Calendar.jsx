@@ -2,6 +2,7 @@ import React from "react";
 import dateFns from "date-fns";
 import Space from "./Space";
 import {Link, Redirect} from "react-router-dom";
+import CalendarCell from "./CalendarCell/CalendarCell";
 
 class Calendar extends React.Component {
 
@@ -89,41 +90,15 @@ class Calendar extends React.Component {
                 days.push(
                     
                     // This is one day box.
-                    <div
-                        className={`col cell ${
-
-                        // If it is not the case that the day and the start of the month are equal,
-                        // set className to "disabled".
-                        // Otherwise, if the day and the selected date are equal,
-                        // set className to "selected."
-                        // Otherwise, don't make a new className.
-                        !dateFns.isSameMonth(day, monthStart)
-                            ? "disabled"
-                            : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
-                        }`}
-
-                        key={day}
-
-
-                        // If className = "selected", then ...
-                        onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
-                        // onClick={() => this.toDayEvents(formattedDate)}
-                        // onClick={className === "selected" ? () => this.toDayEvents(day) : () => this.onDateClick(dateFns.parse(cloneDay))}
-                        // onClick={!cellIsClicked ? () => this.onDateClick(dateFns.parse(cloneDay)) : () => this.toDayEvents(day)}
-                        // onClick={() => !cellIsClicked ? this.onDateClick(dateFns.parse(cloneDay)) : this.toDayEvents(formattedDate)}
-
-
-                        
-                    >
-                        <a href = {`/calendar/${dateFns.format(this.state.currentMonth, "YYYY")}/${dateFns.format(this.state.currentMonth, "MMMM")}/${formattedDate}`} style={{height: '100%', width: '100%'}}>
-                            <span className="number">{formattedDate}</span>
-                            <span className="bg">{formattedDate}</span>
-                            {/* <span>You have events</span> */}
-
-                        </a>
-                        
-                        {/* {this.toDayEvents(cellIsClicked, this.formattedDate)} */}
-                    </div>
+                    <CalendarCell 
+                    day={day} 
+                    formattedDate={formattedDate} 
+                    monthStart={monthStart}
+                    currentMonth={currentMonth}
+                    selectedDate={selectedDate}
+                    
+                    
+                    />
 
                 );
 
