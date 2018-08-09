@@ -37,7 +37,7 @@ class Calendar extends React.Component {
                 </div>
                 <div className="row mt-3 mb-4">
                     <div className="col-12 text-center">
-                        <h5>Double-click a day to add an event.</h5>
+                        <h5>Click a day to add an event.</h5>
                     </div>
                 </div>
             </div>
