@@ -18,7 +18,7 @@ import AppNavbar from "./components/AppNavbar";
 import {Container} from "reactstrap";
 import LoginModal from "./components/LoginModal";
 import CalendarDisplay from "./pages/CalendarDisplay/CalendarDisplay";
-import EventForm from "./pages.EventForm/EventForm";
+import EventForm from "./pages/EventForm/EventForm";
 
 import Test from "./pages/SignUp/Test";
 import axios from 'axios';
@@ -130,7 +130,7 @@ class App extends Component {
             />
 
             <Route exact path="/calendar" component={CalendarDisplay}/>
-            <Route exact path="/calendar/:id" component={EventForm}/>
+            <Route exact path="/calendar/:day" component={EventForm}/>
             
           </Switch>
 

@@ -1,12 +1,14 @@
 import React from "react";
 import dateFns from "date-fns";
 import Space from "./Space";
+import {Redirect} from "react-router-dom";
 
 class Calendar extends React.Component {
 
     state = {
         currentMonth: new Date(),
-        selectedDate: new Date()
+        selectedDate: new Date(),
+        // isClicked: false
     };
 
     // Renders the header of the calendar, which contains the current month and year
@@ -72,6 +74,7 @@ class Calendar extends React.Component {
         let days = [];
         let day = startDate;
         let formattedDate = "";
+        let cellIsClicked = false;
 
         // Start at the startDate
         // While the current day in the loop is less than or equal to the "endDate" constant
@@ -100,7 +103,13 @@ class Calendar extends React.Component {
                         }`}
 
                         key={day}
-                        onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
+
+
+                        // If className = "selected", then ...
+                        // onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
+                        // onClick={className === "selected" ? () => this.toDayEvents(day) : () => this.onDateClick(dateFns.parse(cloneDay))}
+                        onClick={!cellIsClicked ? () => this.onDateClick(dateFns.parse(cloneDay)) : () => this.toDayEvents(day)}
+
                         
                     >
                         <span className="number">{formattedDate}</span>
@@ -135,8 +144,10 @@ class Calendar extends React.Component {
     // What happens when user clicks a certain day on the calendar
     onDateClick = day => {
         this.setState({
-            selectedDate: day
+            selectedDate: day,
+            // isClicked: true
         });
+        this.cellIsClicked = true;
     }
 
     // Move to the next month when the "next" arrow is pressed.
@@ -153,8 +164,8 @@ class Calendar extends React.Component {
         });
     }
 
-    toDayEvents = (id) => {
-        return <Redirect to={"/calendar/" + id} />
+    toDayEvents = (day) => {
+        return <Redirect to={"/calendar/" + day} />
     }
 
     render() {

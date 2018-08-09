@@ -22,11 +22,11 @@ class EventForm extends Component {
     //     axios.post("http://localhost:3001/api/events")
     // }
 
-    componentDidMount() {
-        API.getDayEvents(this.props.match.params.id)
+    // componentDidMount() {
+        // API.getDayEvents(this.props.match.params.id)
         // .then(res => this.setState({ book: res.data }))
         // .catch(err => console.log(err));
-    }
+    // }
 
     render() {
         return(
