@@ -87,7 +87,7 @@ class Calendar extends React.Component {
 
                 // Pushes the following jsx into the "days" array
                 days.push(
-
+                    
                     // This is one day box.
                     <div
                         className={`col cell ${
@@ -115,9 +115,11 @@ class Calendar extends React.Component {
 
                         
                     >
+                        <a href = {`/${formattedDate}`} style={{height: '100%', width: '100%'}}>
+                            <span className="number">{formattedDate}</span>
+                            <span className="bg">{formattedDate}</span>
+                        </a>
                         
-                        <span className="number">{formattedDate}</span>
-                        <span className="bg">{formattedDate}</span>
                         {/* {this.toDayEvents(cellIsClicked, this.formattedDate)} */}
                     </div>
 
