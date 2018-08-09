@@ -130,7 +130,7 @@ class App extends Component {
             />
 
             <Route exact path="/calendar" component={CalendarDisplay}/>
-            <Route exact path="/calendar/:day" component={EventForm}/>
+            <Route exact path="/calendar/:year/:month/:day" component={EventForm}/>
             
           </Switch>
 

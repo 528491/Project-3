@@ -115,7 +115,7 @@ class Calendar extends React.Component {
 
                         
                     >
-                        <a href = {`/calendar/${formattedDate}`} style={{height: '100%', width: '100%'}}>
+                        <a href = {`/calendar/${dateFns.format(this.state.currentMonth, "YYYY")}/${dateFns.format(this.state.currentMonth, "MMMM")}/${formattedDate}`} style={{height: '100%', width: '100%'}}>
                             <span className="number">{formattedDate}</span>
                             <span className="bg">{formattedDate}</span>
                         </a>
