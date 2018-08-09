@@ -15,19 +15,12 @@ import './App.css';
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/SignUp/SignUp";
 import AppNavbar from "./components/AppNavbar";
-import {Container} from "reactstrap"
+import { Container } from "reactstrap"
 import Test from "./pages/SignUp/Test";
 import axios from 'axios';
 
 
 class App extends Component {
-
-  // constructor() {
-  //   super();
-  //
-  // }
-
-
 
   state = {
     tests: [],
@@ -58,7 +51,7 @@ class App extends Component {
   }
 
   redirect = () => {
-    return (<Redirect to='/signup' />);
+    return (<Redirect to='/splash' />);
   }
 
   login = () => {
@@ -67,6 +60,7 @@ class App extends Component {
   }
 
   logout() {
+    //not built this route yet:
       axios.get('/apis/users/logout')
         .then(function (data) {
           this.deAuthenticate();
@@ -80,20 +74,14 @@ class App extends Component {
 
   render() {
     const authenticated = this.state.authenticated;
+    const redirect = this.redirect;
     console.log(this.state);
     return (
       <Container>
         <AppNavbar/>
         <Router>
-
-          {/* <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/signup" component={SignUp}/>
-          </Switch> */}
-      
         <Switch>
-          <Route exact path="/" render={props =>
-            !this.state.authenticated ? this.redirect() :
+          <Route exact path="/splash" render={props =>
             <Home
               {...props}
               authenticate={this.authenticate}
@@ -109,8 +97,8 @@ class App extends Component {
               authenticated={this.state.authenticated}
             />}
           />
-        <Route exact path="/test" render={props =>
-            !this.state.authenticated ? this.redirect() :
+        <Route exact path="/" render={props =>
+            !authenticated ? redirect() :
               <Test
                 {...props}
                 authenticate={this.authenticate}

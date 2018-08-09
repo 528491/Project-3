@@ -11,7 +11,7 @@ import {
     Button,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem 
+    DropdownItem
 } from 'reactstrap';
 
 class AppNavbar extends React.Component {
@@ -32,11 +32,6 @@ class AppNavbar extends React.Component {
                     <NavLink href="/">Home</NavLink>
                   </NavItem>
 
-                <NavItem>
-                  <NavLink href="/login">Login</NavLink>
-                </NavItem>
-
-
                   <NavItem>
                     {/* <NavLink href="https://github.com/reactstrap/reactstrap">Saved Articles</NavLink> */}
                     <NavLink href="/signup">Register</NavLink>
@@ -48,7 +43,7 @@ class AppNavbar extends React.Component {
           </div>
         );
       }
-    
+
 };
 
 export default AppNavbar;
