@@ -220,7 +220,7 @@ main {
   letter-spacing: -.07em;
 }
 
-.calendar .body .cell:hover .bg, .calendar .body .selected .bg  {
+.calendar .body .cell:hover a .bg, .calendar .body .selected a .bg  {
   opacity: 0.05;
   transition: .5s ease-in;
 }

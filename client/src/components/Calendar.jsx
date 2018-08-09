@@ -115,7 +115,7 @@ class Calendar extends React.Component {
 
                         
                     >
-                        <a href = {`/${formattedDate}`} style={{height: '100%', width: '100%'}}>
+                        <a href = {!this.parentElement.hasClass("disabled") ? `/${formattedDate}` : "#"}>
                             <span className="number">{formattedDate}</span>
                             <span className="bg">{formattedDate}</span>
                         </a>
