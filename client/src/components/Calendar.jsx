@@ -115,7 +115,7 @@ class Calendar extends React.Component {
 
                         
                     >
-                        <a href = {!this.parentElement.hasClass("disabled") ? `/${formattedDate}` : "#"}>
+                        <a href = {`/calendar/${formattedDate}`} style={{height: '100%', width: '100%'}}>
                             <span className="number">{formattedDate}</span>
                             <span className="bg">{formattedDate}</span>
                         </a>
@@ -171,15 +171,15 @@ class Calendar extends React.Component {
         });
     }
 
-    toDayEvents = (day) => {
-        // return (<Redirect to={"/calendar/" + day} />)
-        // return (<Redirect to={`/calendar/${day}`} />)
+    // toDayEvents = (day) => {
+    //     // return (<Redirect to={"/calendar/" + day} />)
+    //     // return (<Redirect to={`/calendar/${day}`} />)
 
-        // <Redirect to={"/calendar/" + day} />
-        console.log("clicked cell");
+    //     // <Redirect to={"/calendar/" + day} />
+    //     console.log("clicked cell");
 
-        <Redirect to={`/calendar/${day}`} />
-    }
+    //     <Redirect to={`/calendar/${day}`} />
+    // }
 
     // toDayEvents = (selected, day) => {
     //     if (selected) {
