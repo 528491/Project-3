@@ -6,9 +6,9 @@ const API = {
     //     return axios.get("/api/tests");
     // }
 
-    getUsers: function(params) {
+    getUsers: function(id) {
       return axios.get("/api/users", {params});
-    }
+    },
   /*
   getArticles: function(params) {
     return axios.get("/api/nyt", { params: filterParams(params) });
@@ -26,6 +26,10 @@ const API = {
     return axios.post("/api/articles", articleData);
   }
   */
+
+  getDayEvents: function(id) {
+    return axios.get("/api/events" + id);
+  }
 };
 
 export default API;

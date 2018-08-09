@@ -1,7 +1,6 @@
 import React from "react";
 import dateFns from "date-fns";
 import Space from "./Space";
-import CalendarCell from "./CalendarCell";
 
 class Calendar extends React.Component {
 
@@ -86,36 +85,26 @@ class Calendar extends React.Component {
                 // Pushes the following jsx into the "days" array
                 days.push(
 
-                    // // This is one day box.
-                    // <div
-                    //     className={`col cell ${
+                    // This is one day box.
+                    <div
+                        className={`col cell ${
 
-                    //     // If it is not the case that the day and the start of the month are equal,
-                    //     // set className to "disabled".
-                    //     // Otherwise, if the day and the selected date are equal,
-                    //     // set className to "selected."
-                    //     // Otherwise, don't make a new className.
-                    //     !dateFns.isSameMonth(day, monthStart)
-                    //         ? "disabled"
-                    //         : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
-                    //     }`}
+                        // If it is not the case that the day and the start of the month are equal,
+                        // set className to "disabled".
+                        // Otherwise, if the day and the selected date are equal,
+                        // set className to "selected."
+                        // Otherwise, don't make a new className.
+                        !dateFns.isSameMonth(day, monthStart)
+                            ? "disabled"
+                            : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
+                        }`}
 
-                    //     key={day}
-                    //     onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
-                    // >
-                    //     <span className="number">{formattedDate}</span>
-                    //     <span className="bg">{formattedDate}</span>
-                    // </div>
-
-                    <CalendarCell 
-                        day = {this.day}
-                        monthStart = {this.monthStart}
-                        selectedDate = {this.selectedDate}
-                        cloneDay = {this.cloneDay}
-                        formattedDate = {this.formattedDate}
-                    />
-
-
+                        key={day}
+                        onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
+                    >
+                        <span className="number">{formattedDate}</span>
+                        <span className="bg">{formattedDate}</span>
+                    </div>
 
                 );
 
@@ -161,6 +150,10 @@ class Calendar extends React.Component {
         this.setState({
             currentMonth: dateFns.subMonths(this.state.currentMonth, 1)
         });
+    }
+
+    toDayEvents = () => {
+        
     }
 
     render() {
