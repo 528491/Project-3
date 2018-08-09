@@ -101,6 +101,7 @@ class Calendar extends React.Component {
 
                         key={day}
                         onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
+                        
                     >
                         <span className="number">{formattedDate}</span>
                         <span className="bg">{formattedDate}</span>
@@ -152,8 +153,8 @@ class Calendar extends React.Component {
         });
     }
 
-    toDayEvents = () => {
-        
+    toDayEvents = (id) => {
+        return <Redirect to={"/calendar/" + id} />
     }
 
     render() {

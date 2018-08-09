@@ -17,7 +17,7 @@ const eventSchema = new Schema({
     year: {type: Number},
     month: {type: String},
     day: {type: Number},
-    task: {type: String, required: true}
+    event: {type: String, required: true}
 });
 
 // const User = mongoose.model("User", userSchema);
