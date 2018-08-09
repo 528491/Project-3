@@ -6,6 +6,7 @@ import SignUp from "./../SignUp";
 import AboutSection from "./AboutSection";
 import CardDisplay from "./CardDisplay";
 import Space from "../../components/Space";
+import MenuButton from "../../components/MenuButton";
 
 class Home extends Component {
 
@@ -35,6 +36,8 @@ class Home extends Component {
         <Space/>
         <Space/>
         <Space/>
+
+        <MenuButton/>
 
         <CardDisplay/>
 

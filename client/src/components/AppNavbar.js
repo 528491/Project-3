@@ -13,6 +13,7 @@ import {
     DropdownMenu,
     DropdownItem 
 } from 'reactstrap';
+import MenuButton from "./MenuButton"
 
 class AppNavbar extends React.Component {
     render() {
@@ -20,11 +21,11 @@ class AppNavbar extends React.Component {
           <div>
             <Navbar color="primary" light expand="md">
 
-              <NavbarBrand href="/">
-                <h3>Navbar</h3>
+              <NavbarBrand>
+                <MenuButton/>
               </NavbarBrand>
 
-              <NavbarToggler onClick={this.toggle} />
+              {/* <NavbarToggler onClick={this.toggle} /> */}
               {/* <Collapse isOpen={this.state.isOpen} navbar> */}
 
                 <Nav className="ml-auto" navbar>
