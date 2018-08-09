@@ -230,3 +230,9 @@ main {
   flex-basis: calc(100%/7);
   width: calc(100%/7);
 }
+
+.cell a {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
