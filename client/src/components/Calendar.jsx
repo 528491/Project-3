@@ -1,7 +1,7 @@
 import React from "react";
 import dateFns from "date-fns";
 import Space from "./Space";
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 class Calendar extends React.Component {
 
@@ -106,14 +106,19 @@ class Calendar extends React.Component {
 
 
                         // If className = "selected", then ...
-                        // onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
+                        onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
+                        // onClick={() => this.toDayEvents(formattedDate)}
                         // onClick={className === "selected" ? () => this.toDayEvents(day) : () => this.onDateClick(dateFns.parse(cloneDay))}
-                        onClick={!cellIsClicked ? () => this.onDateClick(dateFns.parse(cloneDay)) : () => this.toDayEvents(day)}
+                        // onClick={!cellIsClicked ? () => this.onDateClick(dateFns.parse(cloneDay)) : () => this.toDayEvents(day)}
+                        // onClick={() => !cellIsClicked ? this.onDateClick(dateFns.parse(cloneDay)) : this.toDayEvents(formattedDate)}
+
 
                         
                     >
+                        
                         <span className="number">{formattedDate}</span>
                         <span className="bg">{formattedDate}</span>
+                        {/* {this.toDayEvents(cellIsClicked, this.formattedDate)} */}
                     </div>
 
                 );
@@ -165,8 +170,35 @@ class Calendar extends React.Component {
     }
 
     toDayEvents = (day) => {
-        return <Redirect to={"/calendar/" + day} />
+        // return (<Redirect to={"/calendar/" + day} />)
+        // return (<Redirect to={`/calendar/${day}`} />)
+
+        // <Redirect to={"/calendar/" + day} />
+        console.log("clicked cell");
+
+        <Redirect to={`/calendar/${day}`} />
     }
+
+    // toDayEvents = (selected, day) => {
+    //     if (selected) {
+    //         console.log("toDayEvents run");
+    //         return (
+    //         <Link to={`/calendar/${day}`}>
+    //             <span className="number">{day}</span>
+    //             <span className="bg">{day}</span>
+    //         </Link>
+    //         )
+    //     }
+
+    //     else {
+    //         return (
+    //             <div>
+    //                 <span className="number">{day}</span>
+    //                 <span className="bg">{day}</span>
+    //             </div>
+    //         )
+    //     }
+    // }
 
     render() {
         return (
