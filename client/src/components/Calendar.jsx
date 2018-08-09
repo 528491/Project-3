@@ -118,6 +118,8 @@ class Calendar extends React.Component {
                         <a href = {`/calendar/${dateFns.format(this.state.currentMonth, "YYYY")}/${dateFns.format(this.state.currentMonth, "MMMM")}/${formattedDate}`} style={{height: '100%', width: '100%'}}>
                             <span className="number">{formattedDate}</span>
                             <span className="bg">{formattedDate}</span>
+                            {/* <span>You have events</span> */}
+
                         </a>
                         
                         {/* {this.toDayEvents(cellIsClicked, this.formattedDate)} */}
@@ -170,6 +172,23 @@ class Calendar extends React.Component {
             currentMonth: dateFns.subMonths(this.state.currentMonth, 1)
         });
     }
+
+    // checkForEvents = () => {
+    //     if (this.parentNode.getAttribute("hasEvent") === true) {
+    //         this.displayCellEvent()
+    //     }
+    // }
+
+    // // use this later
+    // displayCellEvent = () => {
+    //     return("test")
+    // }
+
+    // setAttrToTrue = () => {
+    //     this.parentNode.setAttribute("hasEvent", true);
+    // }
+
+
 
     // toDayEvents = (day) => {
     //     // return (<Redirect to={"/calendar/" + day} />)

@@ -79,9 +79,9 @@ class EventForm extends Component {
     // }
 
     render() {
-        if(this.props.authenticated) {
-          return (<Redirect to='/' />);
-        }
+        // if(this.props.authenticated) {
+        //   return (<Redirect to='/' />);
+        // }
   
         return (
 
