@@ -14,6 +14,8 @@ const Event = require("../../models/event");
 // router.post("/", eventController.addEvent);
 
 // Corresponds to "api/events/:year/:month/:day"
-router.route("/:year/:month/:day")
+// router.route("/:year/:month/:day")
+
+router.post("/", eventController.addEvent);
 
 module.exports = router;

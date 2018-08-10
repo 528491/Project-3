@@ -35,7 +35,7 @@ class EventForm extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         console.log("Item submitted!");
-        axios.post("http://localhost:3001/api/events/:year/:month/:day",
+        axios.post("http://localhost:3001/api/events",
         {
         //   email: this.state.email,
         //   password: this.state.password

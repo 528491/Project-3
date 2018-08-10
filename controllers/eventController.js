@@ -1,5 +1,6 @@
 // const passport = require('passport');
 // const User       = require('../models/user');
+const db = require("../models");
 const Event = require("../models/event");
 // const Session    = require('../models/session');
 
@@ -24,21 +25,26 @@ module.exports = {
 //   },
 
   addEvent: function(req, res) {
-    const newEvent = new Event();
+    // const newEvent = new Event();
 
-    // newEvent.date = req.body.date;
-    newEvent.year = req.body.year;
-    newEvent.month = req.body.month;
-    newEvent.day = req.body.day;
-    newEvent.guardianName = req.body.guardianName;
-    newEvent.userEvent = req.body.userEvent;
+    // // newEvent.date = req.body.date;
+    // newEvent.year = req.body.year;
+    // newEvent.month = req.body.month;
+    // newEvent.day = req.body.day;
+    // newEvent.guardianName = req.body.guardianName;
+    // newEvent.userEvent = req.body.userEvent;
 
-    newEvent.save()
-    .then(function() {
-      res.send({success:true});
-    })
-    .catch(function(err) {
-      res.json(err);
-    });
+    // newEvent.save()
+    // .then(function() {
+    //   res.send({success:true});
+    // })
+    // .catch(function(err) {
+    //   res.json(err);
+    // });
+
+    db.Event
+      .create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };
