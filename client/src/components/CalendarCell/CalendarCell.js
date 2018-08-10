@@ -28,9 +28,19 @@ class CalendarCell extends React.Component {
         console.log(props);
 
         this.state = {
-            hasEvents: true
+            hasEvents: false
         };
     
+    }
+
+    // What happens when user clicks a certain day on the calendar
+    onDateClick = day => {
+            this.props.selectedDate = day
+            // isClicked: true
+
+        this.setState({
+            hasEvents: true
+        });
     }
 
     render() {

@@ -95,7 +95,8 @@ class Calendar extends React.Component {
                     formattedDate={formattedDate} 
                     monthStart={monthStart}
                     currentMonth={currentMonth}
-                    selectedDate={selectedDate}
+                    selectedDate={this.state.selectedDate}
+                    onDateClick={this.onDateClick(day)}
                     
                     
                     />
@@ -125,14 +126,14 @@ class Calendar extends React.Component {
 
     }
 
-    // What happens when user clicks a certain day on the calendar
-    onDateClick = day => {
-        this.setState({
-            selectedDate: day,
-            // isClicked: true
-        });
-        this.cellIsClicked = true;
-    }
+    // // What happens when user clicks a certain day on the calendar
+    // onDateClick = day => {
+    //     this.setState({
+    //         selectedDate: day,
+    //         // isClicked: true
+    //     });
+    //     this.cellIsClicked = true;
+    // }
 
     // Move to the next month when the "next" arrow is pressed.
     nextMonth = () => {
