@@ -78,7 +78,13 @@ class EventForm extends Component {
     // } 
 
     loadEvents = () => {
-        axios.get("http://localhost:3001/api/events")
+        axios.get("http://localhost:3001/api/events", {
+            params: {
+                year: this.state.year,
+                month: this.state.month,
+                day: this.state.day
+            }
+        })
         // .then(function(response) {
         //     console.log(response);
         // })
