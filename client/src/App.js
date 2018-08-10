@@ -14,6 +14,7 @@ import './App.css';
 // import "./pages/HelloWorld";
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/SignUp/SignUp";
+import SplashHome from "./pages/Splash/SplashHome"
 import AppNavbar from "./components/AppNavbar";
 import {Container} from "reactstrap"
 import Test from "./pages/SignUp/Test";
@@ -92,6 +93,17 @@ class App extends Component {
           </Switch> */}
       
         <Switch>
+
+          {/* Change the exact path for this later to just /. This is just for testing right now. */}
+        <Route exact path="/splash" render={props =>
+            !this.state.authenticated ? this.redirect() :
+            <Home
+              {...props}
+              authenticate={this.authenticate}
+              deAuthenticate={this.deAuthenticate}
+              authenticated={this.state.authenticated}
+            />}
+          />
           <Route exact path="/" render={props =>
             !this.state.authenticated ? this.redirect() :
             <Home
