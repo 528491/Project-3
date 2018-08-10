@@ -5,52 +5,29 @@ const Event = require("../models/event");
 // const Session    = require('../models/session');
 
 module.exports = {
-//   signUp: function(req, res){
-//     // console.log("req.body");
-//     // res.send("<h1>Succesffully hit the usersController</h1>");
 
-//     const newUser = new User();
-
-//     newUser.email = req.body.email.toLowerCase().trim();
-//     // newUser.password = req.body.password;
-//     newUser.password = newUser.generateHash(req.body.password);
-
-//     newUser.save()
-//     .then(function() {
-//       res.send({success:true});
-//     })
-//     .catch(function(err) {
-//       res.json(err);
-//     });
-//   },
-
+  // For adding a new event to a certain day
   addEvent: function(req, res) {
-    // const newEvent = new Event();
 
-    // // newEvent.date = req.body.date;
-    // newEvent.year = req.body.year;
-    // newEvent.month = req.body.month;
-    // newEvent.day = req.body.day;
-    // newEvent.guardianName = req.body.guardianName;
-    // newEvent.userEvent = req.body.userEvent;
-
-    // newEvent.save()
-    // .then(function() {
-    //   res.send({success:true});
-    // })
-    // .catch(function(err) {
-    //   res.json(err);
-    // });
-
+    // Use "Event" model
     db.Event
+
+      // create a new MongoDB document
       .create(req.body)
+
+      // return the response as a JSON object
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
 
+  // For finding all events corresponding to whatever is in the url query.
   findAll: function(req, res) {
     db.Event
+
+      // Find any items that match the request query.
       .find(req.query)
+
+      // Sort in descending order
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
