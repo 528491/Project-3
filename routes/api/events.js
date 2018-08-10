@@ -10,6 +10,9 @@ const Event = require("../../models/event");
 // router.post("/login", usersController.login);
 // router.post("/", usersController.signUp);
 
-router.post("/", eventController.addEvent);
+// Corresponds to "api/events"
+// router.post("/", eventController.addEvent);
+
+router.route("/:year:month:day")
 
 module.exports = router;

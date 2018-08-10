@@ -30,6 +30,12 @@ const API = {
   // getDayEvents: function(id) {
   //   return axios.get("/api/events" + id);
   // }
+
+  saveEvent: function(eventData, year, month, day) {
+    return axios.post(`/api/events/${year}/${month}/${day}`, eventData)
+  }
+
+  
 };
 
 export default API;

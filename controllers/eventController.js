@@ -30,6 +30,8 @@ module.exports = {
     newEvent.year = req.body.year;
     newEvent.month = req.body.month;
     newEvent.day = req.body.day;
+    newEvent.guardianName = req.body.guardianName;
+    newEvent.userEvent = req.body.userEvent;
 
     newEvent.save()
     .then(function() {
