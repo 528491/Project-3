@@ -18,4 +18,6 @@ const Event = require("../../models/event");
 
 router.post("/", eventController.addEvent);
 
+router.get("/", eventController.findAll);
+
 module.exports = router;

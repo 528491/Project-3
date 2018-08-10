@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import {Container, Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
-import * as API from "./../../utils/API.js";
+// import * as API from "./../../utils/API.js";
+import API from "./../../utils/API";
+import Space from "../../components/Space";
+import { List, ListItem } from "../../components/List";
+
 
 class EventForm extends Component {
     constructor(props) {
@@ -17,9 +21,14 @@ class EventForm extends Component {
             // day: this.props.day,
             day: this.props.match.params.day,
             guardianName: "",
-            // events: []
+            events: [],
             userEvent: ""
         };
+    }
+
+    componentDidMount() {
+        // this.loadEvents(this.state.year, this.state.month, this.state.day);
+        this.loadEvents();
     }
 
     handleInputChange = event => {
@@ -58,6 +67,30 @@ class EventForm extends Component {
         // .catch(error => {
         //   console.log(error.response);
         // });
+    }
+
+    // loadEvents = (year, month, day) => {
+    //     API.getEvents(year, month, day)
+    //         .then(res =>
+    //             this.setState({events: res.data, guardianName: "", userEvent: ""})
+    //         )
+    //         .catch(err => console.log(err));
+    // } 
+
+    loadEvents = () => {
+        axios.get("http://localhost:3001/api/events")
+        // .then(function(response) {
+        //     console.log(response);
+        // })
+
+        .then(res => 
+            this.setState({events: res.data, guardianName: "", userEvent: ""}))
+        // .catch(function(error) {
+        //     console.log(error);
+        // });
+
+        .catch(err => console.log(err));
+
     }
 
     // addEvent = event => {
@@ -122,6 +155,27 @@ class EventForm extends Component {
                     <Button onClick={this.handleFormSubmit}>Create Event</Button>
                     {/* <Button onClick = {this.handleLogin}>Log In</Button> */}
                 </Form>
+
+                <Space/>
+                <Space/>
+
+                {this.state.events.length ? (
+              <List>
+                {this.state.events.map(userEvent => (
+                  <ListItem key={userEvent._id}>
+                    {/* <Link to={"/books/" + book._id}> */}
+                      <strong>
+                        {userEvent.guardianName}
+                      </strong>
+                      <p>{userEvent.userEvent}</p>
+                    {/* </Link> */}
+                    {/* <DeleteBtn onClick={() => this.deleteBook(book._id)} /> */}
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
   
             </Container>
         )

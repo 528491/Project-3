@@ -33,6 +33,10 @@ const API = {
 
   saveEvent: function(eventData, year, month, day) {
     return axios.post(`/api/events/${year}/${month}/${day}`, eventData)
+  },
+
+  getEvents: function(year, month, day) {
+    return axios.get(`/api/events/${year}/${month}/${day}`);
   }
 
   
