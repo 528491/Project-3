@@ -35,7 +35,8 @@ class App extends Component {
   // }
   state = {
     tests: [],
-    authenticated: false
+    authenticated: false,
+    user: null
   }
   // componentDidMount(){
   //   API.getTests().then(res =>
@@ -47,10 +48,11 @@ class App extends Component {
     return this.state.authenticated
   }
 
-  authenticate = () => {
+  authenticate = (email) => {
     console.log(this.state);
     this.setState({
-      authenticated: true
+      authenticated: true,
+      user: email
     })
   }
 
@@ -128,6 +130,7 @@ class App extends Component {
                 authenticate={this.authenticate}
                 deAuthenticate={this.deAuthenticate}
                 authenticated={this.state.authenticated}
+                email={this.state.user}
               />
               </Container>}
             />
@@ -141,8 +144,39 @@ class App extends Component {
                   authenticated={this.state.authenticated}
                 />}
             />
-            <Route exact path="/calendar" component={CalendarDisplay}/>
-            <Route exact path="/calendar/:year/:month/:day" component={EventForm}/>
+
+            <Route exact path="/calendar" render={props =>
+              !this.state.authenticated ? this.redirect() :
+                // <Test
+                //   {...props}
+                //   authenticate={this.authenticate}
+                //   deAuthenticate={this.deAuthenticate}
+                //   authenticated={this.state.authenticated}
+                // />}
+
+                <CalendarDisplay
+                  {...props}
+                  authenticate={this.authenticate}
+                  deAuthenticate={this.deAuthenticate}
+                  authenticated={this.state.authenticated}
+                  email={this.state.user}
+                />}
+            />
+
+            {/* <Route exact path="/calendar" component={CalendarDisplay}/> */}
+            {/* <Route exact path="/calendar/:year/:month/:day" component={EventForm}/> */}
+
+            <Route exact path="/calendar/:year/:month/:day" render={props =>
+              !this.state.authenticated ? this.redirect() :
+                <EventForm
+                  {...props}
+                  authenticate={this.authenticate}
+                  deAuthenticate={this.deAuthenticate}
+                  authenticated={this.state.authenticated}
+                  email={this.state.user}
+
+                />}
+            />
           </Switch>
       </Router>
 

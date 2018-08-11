@@ -10,4 +10,9 @@ router.post("/", eventController.addEvent);
 // Will run "findAll" method
 router.get("/", eventController.findAll);
 
+// router.delete("/", eventController.remove);
+
+router.route("/:id")
+    .delete(eventController.remove);
+
 module.exports = router;

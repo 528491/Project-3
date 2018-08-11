@@ -14,6 +14,7 @@ const eventSchema = new Schema({
     // startDate
     // date: {type: String}
 
+    email: {type: String},
     year: {type: Number},
     month: {type: String},
     day: {type: Number},

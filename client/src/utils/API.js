@@ -37,6 +37,10 @@ const API = {
 
   getEvents: function(year, month, day) {
     return axios.get(`/api/events/${year}/${month}/${day}`);
+  },
+
+  deleteEvent: function(id, year, month, day) {
+    return axios.delete(`/api/events/${year}/${month}/${day}/${id}`);
   }
 
   
