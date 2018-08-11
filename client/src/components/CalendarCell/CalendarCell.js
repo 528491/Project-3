@@ -4,6 +4,7 @@ import dateFns from "date-fns";
 import "./CalendarCell.css";
 import Space from "../Space";
 import axios from "axios";
+import {Row, Col} from "reactstrap";
 
 
 
@@ -95,10 +96,32 @@ class CalendarCell extends React.Component {
                     <span className="bg">{this.props.formattedDate}</span>
                     {/* <span>You have events</span> */}
 
-                    {this.state.events.length ? (
+                    {/* {this.state.events.length ? (
                         <span>You have {this.state.events.length} events on this day!</span>
 
-                    ) : (<div></div>)}
+                    ) : (<div></div>)} */}
+
+                    {this.state.events.length ? 
+                        (this.state.events.length === 1 ? 
+                            (
+                                // <Row>
+                                //     <Col>
+                                        <span className="message">You have {this.state.events.length} event on this day!</span>
+                                //     </Col>
+                                // </Row>
+                            ) 
+                            : 
+                            (
+                                // <Row>
+                                //     <Col>
+                                        <span className="message">You have {this.state.events.length} events on this day!</span>
+                                //     </Col>
+                                // </Row>
+                            
+                            ) 
+                        )
+                        : (<div></div>)}
+
 
                 </a>
             </div>
