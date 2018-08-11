@@ -58,6 +58,8 @@ class EventForm extends Component {
             guardianName: this.state.guardianName,
             userEvent: this.state.userEvent
         })
+        .then(res => this.loadEvents())
+
 
     }
 
@@ -85,6 +87,19 @@ class EventForm extends Component {
         .catch(err => console.log(err));
 
     }
+
+    deleteEvent = (id) => {
+        // API.deleteEvent(id)
+        //   .then(res => this.loadEvents())
+        //   .catch(err => console.log(err));
+
+        // axios.delete("http://localhost:3001/api/events")
+        console.log("Button clicked.");
+        axios.delete(`http://localhost:3001/api/events/${id}`)
+        .then(res => this.loadEvents())
+        .catch(err => console.log(err));
+        // this.loadEvents();
+    };
 
 
 
@@ -123,7 +138,7 @@ class EventForm extends Component {
                             <strong>
                                 {userEvent.guardianName}
                             </strong>
-                            <DeleteBtn/>
+                            <DeleteBtn onClick={() => this.deleteEvent(userEvent._id)} />
                             <p>{userEvent.userEvent}</p>
 
                         </ListItem>
