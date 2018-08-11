@@ -88,13 +88,13 @@ class App extends Component {
       <Container>
 
 
-        <AppNavbar/>
+        {/* <AppNavbar/> */}
         {/* <LoginModal buttonLabel="Login" /> */}
         <Router>
         <Switch>
 
           {/* Change the exact path for this later to just /. This is just for testing right now. */}
-        <Route exact path="/splash" render={props =>
+          <Route exact path="/splash" render={props =>
             <Container>
               <SplashNavbar/>
               <SplashHome
@@ -118,19 +118,20 @@ class App extends Component {
             </Container>}
           />
  
-          <Switch>
 
             <Route exact path="/" render={props =>
-              !this.state.authenticated ? this.redirect() :
+              // !this.state.authenticated ? this.redirect() :
+              <Container>
+              <SplashNavbar/>
               <Home
                 {...props}
                 authenticate={this.authenticate}
                 deAuthenticate={this.deAuthenticate}
                 authenticated={this.state.authenticated}
-              />}
+              />
+              </Container>}
             />
-
-
+            
             <Route exact path="/test" render={props =>
               !this.state.authenticated ? this.redirect() :
                 <Test
@@ -140,12 +141,9 @@ class App extends Component {
                   authenticated={this.state.authenticated}
                 />}
             />
-
             <Route exact path="/calendar" component={CalendarDisplay}/>
             <Route exact path="/calendar/:year/:month/:day" component={EventForm}/>
-            
           </Switch>
-
       </Router>
 
 
