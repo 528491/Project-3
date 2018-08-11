@@ -16,6 +16,7 @@ import Home from "./pages/Home/Home";
 import SignUp from "./pages/SignUp/SignUp";
 import SplashHome from "./pages/Splash/SplashHome"
 import AppNavbar from "./components/AppNavbar";
+import SplashNavbar from "./components/SplashNavbar";
 import {Container} from "reactstrap"
 import Test from "./pages/SignUp/Test";
 import axios from 'axios';
@@ -27,14 +28,10 @@ class App extends Component {
   //   super();
   //
   // }
-
-
-
   state = {
     tests: [],
     authenticated: false
   }
-
   // componentDidMount(){
   //   API.getTests().then(res =>
   //   this.setState({tests:res.data}))
@@ -84,7 +81,7 @@ class App extends Component {
     console.log(this.state);
     return (
       <Container>
-        <AppNavbar/>
+        {/* <AppNavbar/> */}
         <Router>
 
           {/* <Switch>
@@ -96,30 +93,41 @@ class App extends Component {
 
           {/* Change the exact path for this later to just /. This is just for testing right now. */}
         <Route exact path="/splash" render={props =>
-            !this.state.authenticated ? this.redirect() :
-            <Home
-              {...props}
-              authenticate={this.authenticate}
-              deAuthenticate={this.deAuthenticate}
-              authenticated={this.state.authenticated}
-            />}
+            <Container>
+              <SplashNavbar/>
+              <SplashHome
+                {...props}
+                authenticate={this.authenticate}
+                deAuthenticate={this.deAuthenticate}
+                authenticated={this.state.authenticated}
+              />
+            </Container>
+            }
           />
           <Route exact path="/" render={props =>
-            !this.state.authenticated ? this.redirect() :
+            // !this.state.authenticated ? this.redirect() :
+            <Container>
+            <SplashNavbar/>
             <Home
               {...props}
               authenticate={this.authenticate}
               deAuthenticate={this.deAuthenticate}
               authenticated={this.state.authenticated}
-            />}
+            />
+            </Container>
+            }  
           />
+          
         <Route exact path="/signup" render={props =>
+            <Container>
+            {/* <SplashNavbar/> */}
             <SignUp
               {...props}
               authenticate={this.authenticate}
               deAuthenticate={this.deAuthenticate}
               authenticated={this.state.authenticated}
-            />}
+            />
+            </Container>}
           />
         <Route exact path="/test" render={props =>
             !this.state.authenticated ? this.redirect() :

@@ -16,7 +16,6 @@ class SignUp extends Component {
         password: "",
         errors: []
       };
-
   }
 
     handleInputChange = event => {

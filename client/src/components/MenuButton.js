@@ -22,10 +22,12 @@ export default class MenuButton extends React.Component {
       return (
         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
           <DropdownToggle caret>
-            Calendar App
+            FamilyDay
           </DropdownToggle>
           <DropdownMenu>
             <DropdownItem>Create Event</DropdownItem>
+            <DropdownItem>Messages</DropdownItem>
+            <DropdownItem>Resources</DropdownItem>
             <DropdownItem>Log Out</DropdownItem>
           </DropdownMenu>
         </ButtonDropdown>

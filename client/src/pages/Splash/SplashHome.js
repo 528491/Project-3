@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import 
-    Container
+    {Container}
 from "reactstrap";
 
 class SplashHome extends Component{
@@ -11,8 +11,8 @@ class SplashHome extends Component{
             <Container>
                 <p>You are now viewing the splash home screen</p>;
             </Container>
-            
         );
     }
-    
 };
+
+export default SplashHome;
