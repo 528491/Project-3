@@ -5,6 +5,7 @@ import "./CalendarCell.css";
 import Space from "../Space";
 import axios from "axios";
 import {Row, Col} from "reactstrap";
+import { Link } from 'react-router-dom';
 
 
 
@@ -65,7 +66,7 @@ class CalendarCell extends React.Component {
 
     // What happens when user clicks a certain day on the calendar
     onDateClick = day => {
-            this.props.selectedDate = day
+
             // isClicked: true
 
         // this.setState({
@@ -90,9 +91,9 @@ class CalendarCell extends React.Component {
             }`}
 
             key={this.props.day}
-            onClick={() => this.props.onDateClick(dateFns.parse(this.props.cloneDay))}
+            onClick={() => this.onDateClick(dateFns.parse(this.props.cloneDay))}
             >
-                <a href = {`/calendar/${dateFns.format(this.props.currentMonth, "YYYY")}/${dateFns.format(this.props.currentMonth, "MMMM")}/${this.props.formattedDate}`} style={{height: '100%', width: '100%'}}>
+                <Link to={`/calendar/${dateFns.format(this.props.currentMonth, "YYYY")}/${dateFns.format(this.props.currentMonth, "MMMM")}/${this.props.formattedDate}`} style={{height: '100%', width: '100%'}}>
                     <span className="number">{this.props.formattedDate}</span>
                     <span className="bg">{this.props.formattedDate}</span>
                     {/* <span>You have events</span> */}
@@ -124,7 +125,7 @@ class CalendarCell extends React.Component {
                         : (<div></div>)}
 
 
-                </a>
+                </Link>
             </div>
 
 

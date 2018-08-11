@@ -146,7 +146,7 @@ class App extends Component {
             />
 
             <Route exact path="/calendar" render={props =>
-              !this.state.authenticated ? this.redirect() :
+             !this.state.authenticated ? this.redirect() :
                 // <Test
                 //   {...props}
                 //   authenticate={this.authenticate}

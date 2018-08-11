@@ -1,1 +1,1 @@
-export {default} from "./CalendarDisplay.js";
+export {default} from "./CalendarDisplay";
