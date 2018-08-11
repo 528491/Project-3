@@ -13,6 +13,7 @@ class SignUp extends Component {
     this.state = {
         // username: "",
         email: "",
+        // email: this.props.email,
         password: "",
         errors: []
       };
@@ -37,7 +38,12 @@ class SignUp extends Component {
 
 
         if(data.data.success) {
-            this.props.authenticate();
+          // console.log(data);
+            this.props.authenticate(this.state.email);
+            this.setState({
+              
+            })
+
             
         }
 
@@ -63,7 +69,7 @@ class SignUp extends Component {
         console.log(data);
 
         if(data.data.success) {
-            this.props.authenticate();
+            this.props.authenticate(this.state.email);
         }
 
 
