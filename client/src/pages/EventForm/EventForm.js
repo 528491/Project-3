@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import API from "./../../utils/API";
 import Space from "../../components/Space";
 import { List, ListItem } from "../../components/List";
-
+import DeleteBtn from "../../components/DeleteBtn";
 
 class EventForm extends Component {
     constructor(props) {
@@ -123,6 +123,7 @@ class EventForm extends Component {
                             <strong>
                                 {userEvent.guardianName}
                             </strong>
+                            <DeleteBtn/>
                             <p>{userEvent.userEvent}</p>
 
                         </ListItem>
