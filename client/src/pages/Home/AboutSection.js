@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 // import {Container} from "reactstrap";
 // import { Container, Row, Col, Jumbotron, Card, Form, Article, Footer, FormGroup, Label, Input, Button } from 'reactstrap';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import SignUp from "./../SignUp";
 
 const AboutSection = () => (

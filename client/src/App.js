@@ -37,8 +37,11 @@ class App extends Component {
     return this.state.authenticated
   }
 
-  authenticate = () => {
+  authenticate = user => {
     console.log(this.state);
+
+    localStorage.clear();
+    localStorage.setItem('access', user.email)
     this.setState({
       authenticated: true
     })
@@ -76,18 +79,26 @@ class App extends Component {
     const authenticated = this.state.authenticated;
     const redirect = this.redirect;
     console.log(this.state);
+    if(localStorage.getItem('access')) {
+      this.setState({authenticated: true})
+    }
+
+
     return (
       <Container>
-        <AppNavbar/>
+
         <Router>
         <Switch>
           <Route exact path="/splash" render={props =>
+            <div>
+            <AppNavbar/>
             <Home
               {...props}
               authenticate={this.authenticate}
               deAuthenticate={this.deAuthenticate}
               authenticated={this.state.authenticated}
-            />}
+            />
+            </div>}
           />
         <Route exact path="/signup" render={props =>
             <SignUp

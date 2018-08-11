@@ -1,18 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {
-    Collapse,
     Navbar,
     NavbarToggler,
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
-    Button,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem
+    NavLink 
 } from 'reactstrap';
+
 
 class AppNavbar extends React.Component {
     render() {
@@ -31,9 +26,7 @@ class AppNavbar extends React.Component {
                   <NavItem>
                     <NavLink href="/">Home</NavLink>
                   </NavItem>
-
                   <NavItem>
-                    {/* <NavLink href="https://github.com/reactstrap/reactstrap">Saved Articles</NavLink> */}
                     <NavLink href="/signup">Register</NavLink>
                   </NavItem>
                 </Nav>

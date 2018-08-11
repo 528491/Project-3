@@ -1,0 +1,112 @@
+
+div#reg-container {
+  background: #F1F1F1;
+  font-family: 'Gothic A1', sans-serif;
+  padding: 2rem 1rem;
+}
+
+#reg-form-container {
+  max-width: 380px;
+  background: #FFFFFF;
+
+  border: 1px solid transparent;
+  margin-top: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06), 0 4px 5px 0 rgba(0,0,0,0.06), 0 1px 10px 0 rgba(0,0,0,0.08);
+}
+
+a#back {
+  margin-left: 10px;
+  letter-spacing: .5px;
+  padding-bottom: 2px;
+}
+
+a#back:hover {
+  border-bottom: 1px solid #0056b3;
+  text-decoration: none;
+}
+
+#reg-form label, input {
+  color: #4C4C4C;
+  font-size: 13px;
+}
+
+#reg-form input {
+  border: 1px solid #C1C5C8;
+  margin-bottom: 1.5em;
+}
+
+#reg-form label {
+  margin-bottom: .25em;
+}
+
+#reg-form-container input:focus{
+  border: 1px solid #52A8EC;
+  outline: 0;
+  border-color: rgba(82,168,236,.8);
+  box-shadow: 0 1px 1px rgba(0,0,0,.075) inset, 0 0 8px rgba(82,168,236,.6);
+}
+
+span#fine-print {
+  font-size: 11px;
+  color: #8e8e8e;
+}
+
+p.reg-form-teaser {
+  color: #5b5b5b;
+  line-height: 1.3;
+  font-size: 20px;
+  letter-spacing: .5px;
+  margin: 0;
+  text-align: center;
+  font-family: 'Monserrat', sans-serif;
+  font-weight: 300;
+}
+
+#reg-form-explainer {
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+#reg-teaser {
+  margin-top: 5px;
+}
+
+#reg-form-explainer p {
+  text-align: center;
+  margin: 0px;
+  color: #8e8e8e;
+  font-size: 13px;
+}
+
+#reg-form button {
+  letter-spacing: 1px;
+  font-size: 15px;
+  line-height: 2em;
+  width: 200px;
+  background: #0077C5;
+  border: #0077C5;
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06), 0 4px 5px 0 rgba(0,0,0,0.06), 0 1px 10px 0 rgba(0,0,0,0.08);
+}
+
+div#submit-zone {
+  display: flex;
+  justify-content: center;
+}
+
+div#arrow-container {
+  display: flex;
+  justify-content: space-between;
+  max-height: 45px;
+}
+
+p#form-describe {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  letter-spacing: .5px;
+  margin-right: 10px;
+  font-weight: 400;
+  font-family: 'Gothic A1', sans-serif;
+  cursor: pointer;
+}
