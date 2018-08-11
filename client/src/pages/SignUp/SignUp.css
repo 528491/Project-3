@@ -26,6 +26,12 @@ a#back:hover {
   text-decoration: none;
 }
 
+p#form-describe:hover {
+  border-bottom: 1px solid #0056b3;
+  color: #0056b3;
+  text-decoration: none;
+}
+
 #reg-form label, input {
   color: #4C4C4C;
   font-size: 13px;

@@ -83,7 +83,7 @@ class EventForm extends Component {
 
         // Store the results into the "events" array,
         // and clear the guardianName and userEvent fields.
-        .then(res => 
+        .then(res =>
             this.setState({events: res.data, guardianName: "", userEvent: ""}))
 
 
@@ -147,14 +147,14 @@ class EventForm extends Component {
                         </ListItem>
                         ))}
                     </List>
-                ) 
+                )
 
                 // If there are no items in the "events" array, then...
-                : 
+                :
                 (
                     <h3>No Results to Display</h3>
                 )}
-  
+
             </Container>
         )
       }
