@@ -6,9 +6,9 @@ const API = {
     //     return axios.get("/api/tests");
     // }
 
-    getUsers: function(params) {
-      return axios.get("/api/users", {params});
-    }
+    // getUsers: function(id) {
+    //   return axios.get("/api/users", {params});
+    // },
   /*
   getArticles: function(params) {
     return axios.get("/api/nyt", { params: filterParams(params) });
@@ -26,6 +26,20 @@ const API = {
     return axios.post("/api/articles", articleData);
   }
   */
+
+  // getDayEvents: function(id) {
+  //   return axios.get("/api/events" + id);
+  // }
+
+  saveEvent: function(eventData, year, month, day) {
+    return axios.post(`/api/events/${year}/${month}/${day}`, eventData)
+  },
+
+  getEvents: function(year, month, day) {
+    return axios.get(`/api/events/${year}/${month}/${day}`);
+  }
+
+  
 };
 
 export default API;

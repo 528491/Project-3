@@ -16,8 +16,13 @@ import Home from "./pages/Home/Home";
 import SignUp from "./pages/SignUp/SignUp";
 import SplashHome from "./pages/Splash/SplashHome"
 import AppNavbar from "./components/AppNavbar";
+
 import SplashNavbar from "./components/SplashNavbar";
-import {Container} from "reactstrap"
+import {Container} from "reactstrap";
+import LoginModal from "./components/LoginModal";
+import CalendarDisplay from "./pages/CalendarDisplay/CalendarDisplay";
+import EventForm from "./pages/EventForm/EventForm";
+
 import Test from "./pages/SignUp/Test";
 import axios from 'axios';
 
@@ -81,14 +86,11 @@ class App extends Component {
     console.log(this.state);
     return (
       <Container>
-        {/* <AppNavbar/> */}
-        <Router>
 
-          {/* <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/signup" component={SignUp}/>
-          </Switch> */}
-      
+
+        <AppNavbar/>
+        {/* <LoginModal buttonLabel="Login" /> */}
+        <Router>
         <Switch>
 
           {/* Change the exact path for this later to just /. This is just for testing right now. */}
@@ -104,20 +106,6 @@ class App extends Component {
             </Container>
             }
           />
-          <Route exact path="/" render={props =>
-            // !this.state.authenticated ? this.redirect() :
-            <Container>
-            <SplashNavbar/>
-            <Home
-              {...props}
-              authenticate={this.authenticate}
-              deAuthenticate={this.deAuthenticate}
-              authenticated={this.state.authenticated}
-            />
-            </Container>
-            }  
-          />
-          
         <Route exact path="/signup" render={props =>
             <Container>
             {/* <SplashNavbar/> */}
@@ -129,17 +117,38 @@ class App extends Component {
             />
             </Container>}
           />
-        <Route exact path="/test" render={props =>
-            !this.state.authenticated ? this.redirect() :
-              <Test
+ 
+          <Switch>
+
+            <Route exact path="/" render={props =>
+              !this.state.authenticated ? this.redirect() :
+              <Home
                 {...props}
                 authenticate={this.authenticate}
                 deAuthenticate={this.deAuthenticate}
                 authenticated={this.state.authenticated}
               />}
-          />
-        </Switch>
+            />
+
+
+            <Route exact path="/test" render={props =>
+              !this.state.authenticated ? this.redirect() :
+                <Test
+                  {...props}
+                  authenticate={this.authenticate}
+                  deAuthenticate={this.deAuthenticate}
+                  authenticated={this.state.authenticated}
+                />}
+            />
+
+            <Route exact path="/calendar" component={CalendarDisplay}/>
+            <Route exact path="/calendar/:year/:month/:day" component={EventForm}/>
+            
+          </Switch>
+
       </Router>
+
+
      </Container>
 
     );

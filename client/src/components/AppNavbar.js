@@ -15,6 +15,9 @@ import {
 } from 'reactstrap';
 import MenuButton from "./MenuButton"
 
+import LoginModal from "./LoginModal";
+
+
 class AppNavbar extends React.Component {
     render() {
         return (
@@ -34,7 +37,12 @@ class AppNavbar extends React.Component {
                   </NavItem>
 
                 <NavItem>
-                  <NavLink href="/login">Login</NavLink>
+                  {/* <NavLink href="/login">Login</NavLink> */}
+                  {/* <AppNavbar buttonLabel="Login"/> */}
+
+                  <NavLink href="#">
+                    <LoginModal buttonLabel="Login"/>
+                  </NavLink>
                 </NavItem>
 
 
