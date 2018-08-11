@@ -88,7 +88,7 @@ class CalendarCell extends React.Component {
             }`}
 
             key={this.props.day}
-            onClick={() => this.props.onDateClick(dateFns.parse(this.props.cloneDay))}
+            onClick={() => this.onDateClick(dateFns.parse(this.props.cloneDay))}
             >
                 <Link to= {`/calendar/${dateFns.format(this.props.currentMonth, "YYYY")}/${dateFns.format(this.props.currentMonth, "MMMM")}/${this.props.formattedDate}`} style={{height: '100%', width: '100%'}}>
                     <span className="number">{this.props.formattedDate}</span>
