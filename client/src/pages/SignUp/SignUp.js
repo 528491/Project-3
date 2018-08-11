@@ -83,7 +83,7 @@ class SignUp extends Component {
 
     render() {
       if(this.props.authenticated) {
-        return (<Redirect to='/' />);
+        return (<Redirect to='/calendar/2018/August/11' />);
       }
 
       return (

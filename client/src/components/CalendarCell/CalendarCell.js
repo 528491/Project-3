@@ -49,7 +49,8 @@ class CalendarCell extends React.Component {
             params: {
                 year: dateFns.format(this.props.currentMonth, "YYYY"),
                 month: dateFns.format(this.props.currentMonth, "MMMM"),
-                day: this.props.formattedDate
+                day: this.props.formattedDate,
+                email: this.props.email
             }
         })
 

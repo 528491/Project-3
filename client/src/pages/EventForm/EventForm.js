@@ -15,6 +15,7 @@ class EventForm extends Component {
 
         // Set all state key-value pairs equal to the page's corresponding parameters.
         this.state = {
+            email: this.props.email,
             year: this.props.match.params.year,
             month: this.props.match.params.month,
             day: this.props.match.params.day,
@@ -52,6 +53,7 @@ class EventForm extends Component {
 
         // The object has the following key-value pairs.
         {
+            email: this.props.email,
             year: this.state.year,
             month: this.state.month,
             day: this.state.day,
@@ -72,6 +74,7 @@ class EventForm extends Component {
 
             // Queries. These will filter out the items in the database.
             params: {
+                email: this.props.email,
                 year: this.state.year,
                 month: this.state.month,
                 day: this.state.day

@@ -146,11 +146,24 @@ class App extends Component {
                   authenticate={this.authenticate}
                   deAuthenticate={this.deAuthenticate}
                   authenticated={this.state.authenticated}
+                  email={this.state.user}
                 />}
             />
 
             {/* <Route exact path="/calendar" component={CalendarDisplay}/> */}
             {/* <Route exact path="/calendar/:year/:month/:day" component={EventForm}/> */}
+
+            <Route exact path="/calendar/:year/:month/:day" render={props =>
+              !this.state.authenticated ? this.redirect() :
+                <EventForm
+                  {...props}
+                  authenticate={this.authenticate}
+                  deAuthenticate={this.deAuthenticate}
+                  authenticated={this.state.authenticated}
+                  email={this.state.user}
+
+                />}
+            />
             
           </Switch>
 

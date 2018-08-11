@@ -19,7 +19,7 @@ class CalendarDisplay extends React.Component {
 
         <Row>
           <Col xs="12">
-              <Calendar />
+              <Calendar email = {this.props.email}/>
           </Col>
         </Row>
 
