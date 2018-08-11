@@ -13,10 +13,10 @@ class SignUp extends Component {
     this.state = {
         // username: "",
         email: "",
+        // email: this.props.email,
         password: "",
         errors: []
       };
-
   }
 
     handleInputChange = event => {
@@ -37,7 +37,12 @@ class SignUp extends Component {
 
 
         if(data.data.success) {
-            this.props.authenticate();
+          // console.log(data);
+            this.props.authenticate(this.state.email);
+            this.setState({
+              
+            })
+
             
         }
 
@@ -63,7 +68,7 @@ class SignUp extends Component {
         console.log(data);
 
         if(data.data.success) {
-            this.props.authenticate();
+            this.props.authenticate(this.state.email);
         }
 
 
@@ -77,7 +82,7 @@ class SignUp extends Component {
 
     render() {
       if(this.props.authenticated) {
-        return (<Redirect to='/' />);
+        return (<Redirect to='/calendar/2018/August/11' />);
       }
 
       return (

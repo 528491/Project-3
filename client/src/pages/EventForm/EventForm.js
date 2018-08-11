@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import API from "./../../utils/API";
 import Space from "../../components/Space";
 import { List, ListItem } from "../../components/List";
-
+import DeleteBtn from "../../components/DeleteBtn";
 
 class EventForm extends Component {
     constructor(props) {
@@ -15,6 +15,7 @@ class EventForm extends Component {
 
         // Set all state key-value pairs equal to the page's corresponding parameters.
         this.state = {
+            email: this.props.email,
             year: this.props.match.params.year,
             month: this.props.match.params.month,
             day: this.props.match.params.day,
@@ -52,12 +53,15 @@ class EventForm extends Component {
 
         // The object has the following key-value pairs.
         {
+            email: this.props.email,
             year: this.state.year,
             month: this.state.month,
             day: this.state.day,
             guardianName: this.state.guardianName,
             userEvent: this.state.userEvent
         })
+        .then(res => this.loadEvents())
+
 
     }
 
@@ -70,6 +74,7 @@ class EventForm extends Component {
 
             // Queries. These will filter out the items in the database.
             params: {
+                email: this.props.email,
                 year: this.state.year,
                 month: this.state.month,
                 day: this.state.day
@@ -85,6 +90,19 @@ class EventForm extends Component {
         .catch(err => console.log(err));
 
     }
+
+    deleteEvent = (id) => {
+        // API.deleteEvent(id)
+        //   .then(res => this.loadEvents())
+        //   .catch(err => console.log(err));
+
+        // axios.delete("http://localhost:3001/api/events")
+        console.log("Button clicked.");
+        axios.delete(`http://localhost:3001/api/events/${id}`)
+        .then(res => this.loadEvents())
+        .catch(err => console.log(err));
+        // this.loadEvents();
+    };
 
 
 
@@ -123,6 +141,7 @@ class EventForm extends Component {
                             <strong>
                                 {userEvent.guardianName}
                             </strong>
+                            <DeleteBtn onClick={() => this.deleteEvent(userEvent._id)} />
                             <p>{userEvent.userEvent}</p>
 
                         </ListItem>

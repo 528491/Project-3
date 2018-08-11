@@ -6,6 +6,8 @@ import SignUp from "./../SignUp";
 import AboutSection from "./AboutSection";
 import CardDisplay from "./CardDisplay";
 import Space from "../../components/Space";
+import MenuButton from "../../components/MenuButton";
+import SplashPageCarousel from "../../components/SplashPageCarousel";
 
 class Home extends Component {
 
@@ -30,9 +32,10 @@ class Home extends Component {
         </Row> */}
         <Space/>
 
+        <SplashPageCarousel/>
+        
         <AboutSection/>
 
-        <Space/>
         <Space/>
         <Space/>
 
@@ -40,10 +43,10 @@ class Home extends Component {
 
         <Space/>
         <Space/>
-          This is the Home Page you'd see if you were logged in
-          <Link to = "/signup">
-            Link to Register/Login
-          </Link>
+          {/* This is the Home Page you'd see if you were logged in */}
+          {/* <Link to = "/signup"> */}
+            {/* Link to Register/Login */}
+          {/* </Link> */}
 
       </Container>
     )

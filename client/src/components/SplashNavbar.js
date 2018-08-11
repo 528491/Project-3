@@ -15,17 +15,14 @@ import {
 } from 'reactstrap';
 import MenuButton from "./MenuButton"
 
-import LoginModal from "./LoginModal";
-
-
-class AppNavbar extends React.Component {
+class SplashNavbar extends React.Component {
     render() {
         return (
           <div>
             <Navbar color="primary" light expand="md">
 
               <NavbarBrand>
-                <MenuButton/>
+                FamilyDay
               </NavbarBrand>
 
               {/* <NavbarToggler onClick={this.toggle} /> */}
@@ -37,12 +34,15 @@ class AppNavbar extends React.Component {
                   </NavItem>
 
                 <NavItem>
-                  {/* <NavLink href="/login">Login</NavLink> */}
-                  {/* <AppNavbar buttonLabel="Login"/> */}
+                  <NavLink href="/login">Products</NavLink>
+                </NavItem>
 
-                  <NavLink href="#">
-                    <LoginModal buttonLabel="Login"/>
-                  </NavLink>
+                <NavItem>
+                  <NavLink href="/login">Support</NavLink>
+                </NavItem>
+
+                <NavItem>
+                  <NavLink href="/login">Login</NavLink>
                 </NavItem>
 
 
@@ -60,4 +60,4 @@ class AppNavbar extends React.Component {
     
 };
 
-export default AppNavbar;
+export default SplashNavbar;
