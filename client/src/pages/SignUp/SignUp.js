@@ -40,10 +40,10 @@ class SignUp extends Component {
           // console.log(data);
             this.props.authenticate(this.state.email);
             this.setState({
-              
+
             })
 
-            
+
         }
 
 
@@ -82,7 +82,7 @@ class SignUp extends Component {
 
     render() {
       if(this.props.authenticated) {
-        return (<Redirect to='/calendar/2018/August/11' />);
+        return (<Redirect to='/calendar' />);
       }
 
       return (
