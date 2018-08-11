@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import {Container} from "reactstrap";
+import {Media} from "reactstrap";
 // import { Container, Row, Col, Jumbotron, Card, Form, Article, Footer, FormGroup, Label, Input, Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
 // import SignUp from "./../SignUp";
@@ -8,7 +8,16 @@ const AboutSection = () => (
     <div>
         <div className="row mt-5">
             <div className="col-12 col-lg-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Whether your family is in the midst of a major change, or whether it's just
+                business as usual, family life can be stressful. Competing schedules must be 
+                managed, upcoming events must be tracked, key items discussed. Enter FamilyDay.
+                FamilyDay is the only app that lets you track your families' entire calendar, as well as
+                message members individually or in a group, all in one app. Sign up today and 
+                experience stress-free communication and scheduling!
+            </div>
+            <div className="col-12 col-lg-4">
+                <img src="calendar.png" style={{width: 500, height: 300}}/>
+                {/* <img alt="Picture of Calendar" src="calendar.png"/> */}
             </div>
         </div>
         <div className="row">

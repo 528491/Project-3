@@ -7,7 +7,7 @@ const CardDisplay = (props) => {
         <Row>
             <Col sm="4">
                 <Card body>
-                <CardTitle>Special Title Treatment</CardTitle>
+                <CardTitle>One Calendar for the Whole Family</CardTitle>
                 <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
                 {/* <Button>Go somewhere</Button> */}
                 </Card>
@@ -15,7 +15,7 @@ const CardDisplay = (props) => {
 
             <Col sm="4">
                 <Card body>
-                <CardTitle>Special Title Treatment</CardTitle>
+                <CardTitle>Seamless Event Scheduling</CardTitle>
                 <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
                 {/* <Button>Go somewhere</Button> */}
                 </Card>
@@ -23,7 +23,7 @@ const CardDisplay = (props) => {
 
             <Col sm="4">
                 <Card body>
-                <CardTitle>Special Title Treatment</CardTitle>
+                <CardTitle>Effortless Messaging</CardTitle>
                 <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
                 {/* <Button>Go somewhere</Button> */}
                 </Card>

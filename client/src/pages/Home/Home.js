@@ -38,18 +38,15 @@ class Home extends Component {
 
         <Space/>
         <Space/>
-        <Space/>
-
-        <MenuButton/>
 
         <CardDisplay/>
 
         <Space/>
         <Space/>
-          This is the Home Page you'd see if you were logged in
-          <Link to = "/signup">
-            Link to Register/Login
-          </Link>
+          {/* This is the Home Page you'd see if you were logged in */}
+          {/* <Link to = "/signup"> */}
+            {/* Link to Register/Login */}
+          {/* </Link> */}
 
       </Container>
     )
