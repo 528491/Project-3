@@ -5,12 +5,12 @@ import "./CalendarCell.css";
 import Space from "../Space";
 import axios from "axios";
 import {Row, Col} from "reactstrap";
+import { Link } from 'react-router-dom';
 
 
 
 
-
-/* 
+/*
 
 Props:
 * day
@@ -34,7 +34,7 @@ class CalendarCell extends React.Component {
             // hasEvents: false
             events: []
         };
-    
+
     }
 
     componentDidMount() {
@@ -54,19 +54,17 @@ class CalendarCell extends React.Component {
             }
         })
 
-        .then(res => 
+        .then(res =>
             this.setState({events: res.data}))
 
 
         .catch(err => console.log(err));
 
     }
-    
+
 
     // What happens when user clicks a certain day on the calendar
     onDateClick = day => {
-            this.props.selectedDate = day
-            // isClicked: true
 
         // this.setState({
         //     hasEvents: true
@@ -92,7 +90,7 @@ class CalendarCell extends React.Component {
             key={this.props.day}
             onClick={() => this.props.onDateClick(dateFns.parse(this.props.cloneDay))}
             >
-                <a href = {`/calendar/${dateFns.format(this.props.currentMonth, "YYYY")}/${dateFns.format(this.props.currentMonth, "MMMM")}/${this.props.formattedDate}`} style={{height: '100%', width: '100%'}}>
+                <Link to= {`/calendar/${dateFns.format(this.props.currentMonth, "YYYY")}/${dateFns.format(this.props.currentMonth, "MMMM")}/${this.props.formattedDate}`} style={{height: '100%', width: '100%'}}>
                     <span className="number">{this.props.formattedDate}</span>
                     <span className="bg">{this.props.formattedDate}</span>
                     {/* <span>You have events</span> */}
@@ -102,36 +100,36 @@ class CalendarCell extends React.Component {
 
                     ) : (<div></div>)} */}
 
-                    {this.state.events.length ? 
-                        (this.state.events.length === 1 ? 
+                    {this.state.events.length ?
+                        (this.state.events.length === 1 ?
                             (
                                 // <Row>
                                 //     <Col>
                                         <span className="message">You have {this.state.events.length} event on this day!</span>
                                 //     </Col>
                                 // </Row>
-                            ) 
-                            : 
+                            )
+                            :
                             (
                                 // <Row>
                                 //     <Col>
                                         <span className="message">You have {this.state.events.length} events on this day!</span>
                                 //     </Col>
                                 // </Row>
-                            
-                            ) 
+
+                            )
                         )
                         : (<div></div>)}
 
 
-                </a>
+                </Link>
             </div>
 
 
 
         )
     }
-    
+
 // );
 }
 
