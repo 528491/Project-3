@@ -7,6 +7,7 @@ import AboutSection from "./AboutSection";
 import CardDisplay from "./CardDisplay";
 import Space from "../../components/Space";
 import MenuButton from "../../components/MenuButton";
+import SplashPageCarousel from "../../components/SplashPageCarousel";
 
 class Home extends Component {
 
@@ -31,6 +32,8 @@ class Home extends Component {
         </Row> */}
         <Space/>
 
+        <SplashPageCarousel/>
+        
         <AboutSection/>
 
         <Space/>
