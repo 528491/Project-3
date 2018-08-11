@@ -3,6 +3,8 @@ import dateFns from "date-fns";
 // import Space from "./Space";
 import "./CalendarCell.css";
 import Space from "../Space";
+import axios from "axios";
+
 
 
 
@@ -28,19 +30,45 @@ class CalendarCell extends React.Component {
         console.log(props);
 
         this.state = {
-            hasEvents: false
+            // hasEvents: false
+            events: []
         };
     
     }
+
+    componentDidMount() {
+        this.checkForEvents();
+    }
+
+    checkForEvents() {
+        console.log("Checked for events.");
+        axios.get("http://localhost:3001/api/events", {
+
+            // Queries. These will filter out the items in the database.
+            params: {
+                year: dateFns.format(this.props.currentMonth, "YYYY"),
+                month: dateFns.format(this.props.currentMonth, "MMMM"),
+                day: this.props.formattedDate
+            }
+        })
+
+        .then(res => 
+            this.setState({events: res.data}))
+
+
+        .catch(err => console.log(err));
+
+    }
+    
 
     // What happens when user clicks a certain day on the calendar
     onDateClick = day => {
             this.props.selectedDate = day
             // isClicked: true
 
-        this.setState({
-            hasEvents: true
-        });
+        // this.setState({
+        //     hasEvents: true
+        // });
     }
 
     render() {
@@ -66,6 +94,11 @@ class CalendarCell extends React.Component {
                     <span className="number">{this.props.formattedDate}</span>
                     <span className="bg">{this.props.formattedDate}</span>
                     {/* <span>You have events</span> */}
+
+                    {this.state.events.length ? (
+                        <span>You have {this.state.events.length} events on this day!</span>
+
+                    ) : (<div></div>)}
 
                 </a>
             </div>
