@@ -8,7 +8,7 @@ const CardDisplay = (props) => {
             <Col sm="4">
                 <Card body>
                 <CardTitle>One Calendar for the Whole Family</CardTitle>
-                <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                <CardText>Keep all calendar events in a single place</CardText>
                 {/* <Button>Go somewhere</Button> */}
                 </Card>
             </Col>
@@ -16,7 +16,7 @@ const CardDisplay = (props) => {
             <Col sm="4">
                 <Card body>
                 <CardTitle>Seamless Event Scheduling</CardTitle>
-                <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                <CardText>Easily schedule events without back and forths about time and place</CardText>
                 {/* <Button>Go somewhere</Button> */}
                 </Card>
             </Col>
@@ -24,12 +24,11 @@ const CardDisplay = (props) => {
             <Col sm="4">
                 <Card body>
                 <CardTitle>Effortless Messaging</CardTitle>
-                <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                <CardText>Keep all Family-Related conversations in one place</CardText>
                 {/* <Button>Go somewhere</Button> */}
                 </Card>
             </Col>
         </Row>
     );
 };
-    
 export default CardDisplay;
