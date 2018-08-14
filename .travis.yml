@@ -3,4 +3,4 @@ services:
   - mongodb
 node_js:
   - "stable"
-script: gulp travis
+script: yarn test
