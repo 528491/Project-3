@@ -1,0 +1,8 @@
+const app = require("../server");
+
+app.set('port', process.env.PORT || 3001);
+
+const server = app.listen(app.get('port'), function(){
+    console.log("Running from ./bin/www");
+    console.log(`🌎  ==> API Server now listening on PORT ${app.get('port')}!`);
+})

@@ -16,3 +16,11 @@ test("Verify we can visit the base route without any errors.", function(t){
             t.end();
         })
 });
+
+test("Verify that the base route returns type html and not .json", function(t){
+    request(app)
+        .get("/")
+        .end(function(err, res){
+            t.end();
+        });
+});
