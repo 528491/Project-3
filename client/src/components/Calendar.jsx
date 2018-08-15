@@ -97,6 +97,7 @@ class Calendar extends React.Component {
                     currentMonth={currentMonth}
                     selectedDate={this.state.selectedDate}
                     // onDateClick={this.onDateClick(day)}
+                    email={this.props.email}
                     
                     
                     />

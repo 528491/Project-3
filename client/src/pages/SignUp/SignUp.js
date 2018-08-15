@@ -60,7 +60,7 @@ class SignUp extends Component {
 
 
         if(data.data.success) {
-            this.props.authenticate();
+            this.props.authenticate(newUser.email);
 
         }
 
