@@ -48,11 +48,11 @@ class App extends Component {
     return this.state.authenticated
   }
 
-  authenticate = (email) => {
-    console.log(this.state);
+  authenticate = user => {
+    localStorage.clear();
+    localStorage.setItem('access', user.email)
     this.setState({
-      authenticated: true,
-      user: email
+      authenticated: true
     })
   }
 

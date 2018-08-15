@@ -30,10 +30,13 @@ class SignUp extends Component {
           email: "",
           emailConfirm: "",
           password: "",
+          fname: "",
+          lname: "",
           errors: [],
           focused: false,
           registered: false,
-          passwordMatch: true
+          passwordsMatch: true,
+          firstCredsValidated: false
         };
 
   }
@@ -53,38 +56,43 @@ class SignUp extends Component {
       // Create a newUser object with the same email and password key-value pairs as this component's state
       const newUser = {
         email: this.state.email,
-        password: this.state.password
+        password: this.state.password,
+        firstName: this.state.fname,
+        lastName: this.state.lname
       };
 
-      // Posts this user to the following api route:
-      axios.post("http://localhost:3001/api/users",
-      newUser
-      )
+      // // Posts this user to the following api route:
+      // axios.post("http://localhost:3001/api/users",
+      // newUser
+      // )
 
-      // Afterwards...
-      .then((data) => {
+      // // Afterwards...
+      // .then((data) => {
 
-        // If the data is successfully sent, 
-        // run the "authenticate" method included in this component's props.
-        // This "authenticate" method can be found in App.js.
-        if(data.data.success) {
+      //   // If the data is successfully sent, 
+      //   // run the "authenticate" method included in this component's props.
+      //   // This "authenticate" method can be found in App.js.
+      //   if(data.data.success) {
 
-            /* 
-              The method below will change the state of the App.js component in the following ways:
-              * authenticated: true
-              * user: newUser.email
-            */
-            this.props.authenticate(newUser.email);
-            this.redirectToCalendar();
-
-
-        }
+      //       /* 
+      //         The method below will change the state of the App.js component in the following ways:
+      //         * authenticated: true
+      //         * user: newUser.email
+      //       */
+      //       this.props.authenticate(newUser.email);
+      //       this.redirectToCalendar();
 
 
-      })
-      .catch(error => {
-        console.log(error.response);
-      });
+      //   }
+
+
+      // })
+      // .catch(error => {
+      //   console.log(error.response);
+      // });
+
+      this.props.authenticate(newUser);
+      this.setState({firstCredsValidated: true});
     };
 
     // Connected to submit button.
