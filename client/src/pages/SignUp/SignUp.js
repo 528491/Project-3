@@ -96,6 +96,8 @@ class SignUp extends Component {
         password: this.state.password
       };
       console.log(user)
+
+      // Look at "usersController" file for post instructions.
       axios.post("http://localhost:3001/api/users/login", user)
       .then( data => {
         console.log(data);
