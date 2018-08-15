@@ -20,6 +20,16 @@ test("Test that tape and supertest are installed and functioning properly", func
 test("Verify we can visit the base route without any errors.", function(t){
     request(app)
         .get("/")
+        .end(function(err, res){
+            t.error(err, "No Error");
+            app.close();
+            t.end();
+        });
+});
+
+test("Verify that the base route returns type html and not .json", function(t){
+    request(app)
+        .get("/")
         .expect('Content-Type', /html/)
         .expect(200)
         .end(function(err, res){
@@ -29,12 +39,12 @@ test("Verify we can visit the base route without any errors.", function(t){
         })
 });
 
-test("Verify that the base route returns type html and not .json", function(t){
+test("Verify that the route /api/tests returns a json response", function(t){
     request(app)
-        .get("/")
-        .end(function(err, res){
-            t.error(err, "No Error");
-            app.close();
-            t.end();
-        });
+        .get("/api/test")
+        .expect("Content-Type", /json/)
+        .expect(200);
+    app.close();
 });
+
+
