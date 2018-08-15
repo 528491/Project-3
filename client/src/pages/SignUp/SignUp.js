@@ -75,6 +75,8 @@ class SignUp extends Component {
               * user: newUser.email
             */
             this.props.authenticate(newUser.email);
+            this.redirectToCalendar();
+
 
         }
 
@@ -109,7 +111,12 @@ class SignUp extends Component {
               * user: newUser.email
             */
             this.props.authenticate(user);
+            this.redirectToCalendar();
         }
+
+        // else {
+        //   console.log("login failed!");
+        // }
       })
       .catch(error => {
         console.log(error);
@@ -283,6 +290,12 @@ class SignUp extends Component {
         </Form>
       );
 
+    }
+
+    redirectToCalendar = () => {
+      return (
+        <Redirect to='/calendar' />
+      )
     }
 
     render() {
