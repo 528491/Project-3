@@ -14,10 +14,13 @@ class SignUp extends Component {
           email: "",
           emailConfirm: "",
           password: "",
+          fname: "",
+          lname: "",
           errors: [],
           focused: false,
           registered: false,
-          passwordsMatch: true
+          passwordsMatch: true,
+          firstCredsValidated: false
         };
 
   }
@@ -30,24 +33,35 @@ class SignUp extends Component {
     };
 
     handleFormSubmit = event => {
-      event.preventDefault();
 
+
+      // if(false) {
+      // } else {
+      // event.preventDefault();
+      //
       const newUser = {
         email: this.state.email,
-        password: this.state.password
+        password: this.state.password,
+        firstName: this.state.fname,
+        lastName: this.state.lname
       };
-      console.log(newUser);
-      axios.post("http://localhost:3001/api/users",
-      newUser
-      )
-      .then((data) => {
-        if(data.data.success) {
-            this.props.authenticate();
-        }
-      })
-      .catch(error => {
-        console.log(error.response);
-      });
+      // console.log(newUser);
+      // axios.post("http://localhost:3001/api/users",
+      // newUser
+      // )
+      // .then((data) => {
+      //   if(data.data.success) {
+      //       this.props.authenticate();
+      //   }
+      // })
+      // .catch(error => {
+      //   console.log(error.response);
+      // });
+      // }
+
+      this.props.authenticate(newUser);
+      this.setState({firstCredsValidated: true});
+
     };
 
     handleLogin = event => {
@@ -78,7 +92,8 @@ class SignUp extends Component {
           <i className="fas fa-lock" aria-hidden="true">&nbsp;</i> Create Account
         </Button>)
         :
-        (<Button onClick={this.handleLogin}>Log In</Button>));
+        (<Button onClick={this.handleLogin}>
+          <i className="fas fa-lock" aria-hidden="true">&nbsp;</i> Log In</Button>));
     }
 
 
@@ -86,26 +101,12 @@ class SignUp extends Component {
     handleFocusChange = event => {
       event.preventDefault();
       const { name, value } = event.target;
-      console.log(event);
-      console.log(this.state);
-      switch(name) {
-        case "email":
-          if (this.state.emailConfirm && this.state.email !== this.state.emailConfirm) {
-            this.setState({ passwordsMatch: false })
-          } else {
-            this.setState({ passwordsMatch: true })
-          }
-          break;
-        default:
-          break;
-      }
       this.setState({focused: true})
 
     }
 
     handleBlur = event => {
       event.preventDefault();
-      console.log(event);
       this.setState({focused: false})
     }
 
@@ -116,22 +117,22 @@ class SignUp extends Component {
           <FormFeedback invalid={"true"} aria-live="polite">Passwords must contain an @ and match.</FormFeedback>
         );
       }
-
     }
 
     navButton = () => {
 
-      const instructions = this.state.registered ? "Already have an account?" : "New to FamilyDay?";
-      const altLink = this.state.registered ? "Log In" : "Sign Up";
+      const instructions = this.state.registered ? "New to FamilyDay?" : "Already Have An Account?" ;
+      const altLink = this.state.registered ? "Sign Up" : "Log In";
 
-      return (<div>
-                <button id="form-describe"
-                  onClick={this.switchForm}>
-                  <span>{instructions}</span>
-                  <br/>
-                  <span>{altLink}</span>
-                </button>
-              </div>);
+      return (
+        <div>
+          <button id="form-describe"
+            onClick={this.switchForm}>
+            <span>{instructions}</span>
+            <br/>
+            <span>{altLink}</span>
+          </button>
+        </div>);
     }
 
     switchForm = () => {
@@ -147,8 +148,6 @@ class SignUp extends Component {
     }
 
     displayLogin(){
-
-    let submitButton = this.submitButton();
       return(
         <div>
           <FormGroup>
@@ -159,14 +158,13 @@ class SignUp extends Component {
           <FormGroup>
             <Label for="password">Password</Label>
           <Input type="password" name="password" id="password" className="reg-input"
-              onChange={this.handleInputChange}/>
+              onChange={this.handleInputChange} required/>
           </FormGroup>
         </div>
       );
     }
 
     handleEmailInput = event => {
-      console.log(this.state.email.slice(0, this.state.emailConfirm.length + 1));
       if(this.state.emailConfirm &&
          this.state.email.indexOf('@') > -1 &&
          this.state.email.slice(0, event.target.value.length) !== event.target.value) {
@@ -177,23 +175,21 @@ class SignUp extends Component {
     }
 
     displayRegistration = () => {
-      let passwordsMatchWarning = this.passwordsMatchWarning();
 
-      let submitButton = this.submitButton();
+      const passwordsMatchWarning = this.passwordsMatchWarning();
+      const submitButton = this.submitButton();
+
       const handleEmailInput = event => {
         this.handleInputChange(event);
         this.handleEmailInput(event);
       };
 
-      return(
-
-
+      return (
         <div>
           <FormGroup>
             <Label for="email">Email address</Label>
           <Input invalid={this.state.focused} className="reg-input" type="text" name="email" id="email"
-              onChange={handleEmailInput} onFocus={this.handleFocusChange} onBlur={this.handleBlur}/>
-
+              onChange={handleEmailInput} onFocus={this.handleFocusChange} onBlur={this.handleBlur} required/>
           </FormGroup>
           <FormGroup>
             <Label for="emailConfirm">Confirm email</Label>
@@ -209,35 +205,51 @@ class SignUp extends Component {
           <FormGroup>
             <Label for="fname">First Name</Label>
             <Input type="text" name="fname" id="fname" className="reg-input"
-              onChange={this.handleInputChange}/>
+              onChange={this.handleInputChange} required/>
           </FormGroup>
           <FormGroup>
             <Label for="lname">Last Name</Label>
             <Input type="text" name="lname" id="lname" className="reg-input"
-              onChange={this.handleInputChange}/>
+              onChange={this.handleInputChange} required/>
           </FormGroup>
-          </div>
-
+        </div>
       );
 
     }
 
     displayBackArrow = () => {
-      return (  <div id="arrow-container">
-          <Link to="/" id="back" test="hi"><i className="fas fa-chevron-left" aria-hidden="true"></i> Back </Link>
-        </div>);
+      return (
+        <div id="arrow-container">
+          <Link to="/" id="back" test="hi"><i className="fas fa-chevron-left" id="back-arrow" aria-hidden="true"></i> Back </Link>
+        </div>
+      );
+    }
+
+    displayInstructions = () => {
+      if(!this.state.registered) {
+        return (
+          <div id="teaser-text">
+            <FormText>Creating an account is the first step to drama-free parenting.&nbsp;
+              <Link to="splash">Learn More </Link>
+            </FormText>
+          </div>
+        );
+      }
     }
 
     render() {
-      if(this.props.authenticated) {
-        return (<Redirect to='/calendar'/>);
-      }
 
-      let submitButton = this.submitButton();
-      let navButton = this.navButton();
+     if(this.state.firstCredsValidated) {
+        return (<Redirect to='onboarding' biz={"Rot into pieces, Papa John's"}/>);
+      } else if (this.state.authenticated) {
+        return (<Redirect to='calendar'/>);
+      };
+
+      const submitButton = this.submitButton();
+      const navButton = this.navButton();
       const backArrow = this.displayBackArrow();
       const displayForm = this.displayForm()
-      console.log(this.state);
+      const displayInstructions = this.displayInstructions();
 
       return (
         <Jumbotron id="reg-container">
@@ -248,19 +260,22 @@ class SignUp extends Component {
           </div>
           <Container id="reg-form-container">
             <Container id="reg-teaser">
-              <p className="reg-form-teaser">Family Day.</p>
-              <p className="reg-form-teaser">Fully Planned.</p>
+              <div>
+                <p className="reg-form-teaser">Family Day.</p>
+                <p className="reg-form-teaser">Fully Planned.</p>
+              </div>
+                { displayInstructions }
             </Container>
-              <Form id="reg-form" aria-label="registration-form" aria-describedby="reg-form-label" autoComplete="off">
-              { displayForm }
-              <FormGroup id="submit-zone">
-                { submitButton }
-              </FormGroup>
-            </Form>
+                <Form id="reg-form" aria-label="registration-form" aria-describedby="reg-form-label" autoComplete="off">
+                  { displayForm }
+                <FormGroup id="submit-zone">
+                  { submitButton }
+                </FormGroup>
+              </Form>
           </Container>
-          </div>
-        </Jumbotron>
-      )
+        </div>
+      </Jumbotron>
+      );
     }
   }
 

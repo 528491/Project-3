@@ -14,6 +14,7 @@ import './App.css';
 // import "./pages/HelloWorld";
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/SignUp/SignUp";
+import Onboarding from "./pages/Onboarding/Onboarding";
 import AppNavbar from "./components/AppNavbar";
 import { Container } from "reactstrap"
 import Test from "./pages/SignUp/Test";
@@ -38,8 +39,6 @@ class App extends Component {
   }
 
   authenticate = user => {
-    console.log(this.state);
-
     localStorage.clear();
     localStorage.setItem('access', user.email)
     this.setState({
@@ -89,6 +88,7 @@ class App extends Component {
 
         <Router>
         <Switch>
+
           <Route exact path="/splash" render={props =>
             <div>
             <AppNavbar/>
@@ -100,8 +100,28 @@ class App extends Component {
             />
             </div>}
           />
+
         <Route exact path="/signup" render={props =>
+
+
+
+            <Switch>
             <SignUp
+              {...props}
+              authenticate={this.authenticate}
+              deAuthenticate={this.deAuthenticate}
+              authenticated={this.state.authenticated}
+            />
+            
+
+
+
+
+            </Switch>
+            }
+          />
+        <Route exact path="/onboarding" render={props =>
+            <Onboarding
               {...props}
               authenticate={this.authenticate}
               deAuthenticate={this.deAuthenticate}

@@ -18,14 +18,13 @@ div#reg-container {
 }
 
 a#back {
-  margin-left: 10px;
+  margin-left: 5px;
+  color: #0077C5;
   letter-spacing: .5px;
-  padding-bottom: 2px;
-  border-bottom: 1px solid transparent;
+
 }
 
 a#back:hover {
-  border-bottom: 1px solid #0056b3;
   text-decoration: none;
 }
 
@@ -106,25 +105,45 @@ div#submit-zone {
 div#arrow-container {
   display: flex;
   align-items: center;
-  max-height: 45px;
   padding-top: 2%;
-  margin-bottom: 1%;
+  padding-right: 2%;
+  padding-bottom: 1%;
+  border-bottom: 2px solid transparent;
 }
+
+div#arrow-container:hover {
+  color: #1c89ff;
+  border-bottom: 2px solid #1c89ff;
+}
+
+div#arrow-container:hover i {
+  color: #1c89ff;
+}
+
+div#arrow-container:hover a {
+  color: #1c89ff;
+}
+
 
 button#form-describe {
   background: transparent;
   border: none;
-  color: #007bff;
+  color: #0077C5;
   text-decoration: none;
   letter-spacing: .5px;
   font-weight: 300;
   text-align: right;
   font-size: 14px;
   cursor: pointer;
+  border-bottom: 2px solid transparent;
 }
 
 button#form-describe:focus {
   outline: 2px auto -webkit-focus-ring-color;
+}
+button#form-describe:hover {
+  color: #1c89ff;
+  border-bottom: 2px solid #1c89ff;
 }
 
 div#form-nav-container {
@@ -135,4 +154,15 @@ div#form-nav-container {
 div#arrows-container {
   display: flex;
   justify-content: space-between;
+}
+
+i#back-arrow {
+  font-size: 80%;
+  vertical-align: 10%;
+}
+
+div#teaser-text {
+  margin-top: 8px;
+  margin-bottom: 5px;
+  padding: 0 2px 0 2px;
 }
