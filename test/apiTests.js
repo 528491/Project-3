@@ -14,6 +14,8 @@ const assert = require('assert');
 //    });
 
 test("Test that tape and supertest are installed and functioning properly", function(t){
+    
+    t.ok(true);
     t.end();
 });
 
@@ -47,4 +49,14 @@ test("Verify that the route /api/tests returns a json response", function(t){
     app.close();
 });
 
+//Only one response from /api.tests
+//Will be used for testing other api routes as well
 
+test("Test that /api/tests route returns a json response with only a single object", function(t){
+    request(app)
+        .get("/api/test");
+
+    
+
+    app.close();
+});
