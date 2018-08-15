@@ -2,29 +2,34 @@
 div#reg-container {
   background: #F1F1F1;
   font-family: 'Gothic A1', sans-serif;
-  padding: 2rem 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
 }
 
 #reg-form-container {
-  max-width: 380px;
   background: #FFFFFF;
-
   border: 1px solid transparent;
   margin-top: 5px;
   padding: 20px;
-  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06), 0 4px 5px 0 rgba(0,0,0,0.06), 0 1px 10px 0 rgba(0,0,0,0.08);
+  box-shadow: 3px 2px 4px 0px rgba(0,0,0,0.06), 3px 4px 5px 1px rgba(0,0,0,0.06), 0 3px 0px 0 rgba(0,0,0,0.08);
 }
 
 a#back {
   margin-left: 10px;
   letter-spacing: .5px;
   padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
 }
 
 a#back:hover {
   border-bottom: 1px solid #0056b3;
   text-decoration: none;
 }
+
+
 
 #reg-form label, input {
   color: #4C4C4C;
@@ -86,7 +91,11 @@ p.reg-form-teaser {
   width: 200px;
   background: #0077C5;
   border: #0077C5;
-  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06), 0 4px 5px 0 rgba(0,0,0,0.06), 0 1px 10px 0 rgba(0,0,0,0.08);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.7);
+}
+
+#reg-form button:focus {
+  outline: 3px auto -webkit-focus-ring-color;
 }
 
 div#submit-zone {
@@ -96,17 +105,34 @@ div#submit-zone {
 
 div#arrow-container {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   max-height: 45px;
+  padding-top: 2%;
+  margin-bottom: 1%;
 }
 
-p#form-describe {
+button#form-describe {
+  background: transparent;
+  border: none;
   color: #007bff;
   text-decoration: none;
-  background-color: transparent;
   letter-spacing: .5px;
-  margin-right: 10px;
-  font-weight: 400;
-  font-family: 'Gothic A1', sans-serif;
+  font-weight: 300;
+  text-align: right;
+  font-size: 14px;
   cursor: pointer;
+}
+
+button#form-describe:focus {
+  outline: 2px auto -webkit-focus-ring-color;
+}
+
+div#form-nav-container {
+  width: 360px;
+  margin-top: 4px;
+}
+
+div#arrows-container {
+  display: flex;
+  justify-content: space-between;
 }

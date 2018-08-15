@@ -7,7 +7,7 @@ import "./SignUp.css";
 
 class SignUp extends Component {
 
-  constructor(pgitrops) {
+  constructor(props) {
     super(props);
       this.state = {
           // username: "",
