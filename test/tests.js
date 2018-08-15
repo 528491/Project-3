@@ -1,4 +1,6 @@
-var assert = require('assert');
+const assert = require('assert');
+
+//Mocha and Chai tests
 describe('Basic Mocha String Test', function () {
  it('should return number of charachters in a string', function () {
         assert.equal("Hello".length, 5);
@@ -7,3 +9,4 @@ describe('Basic Mocha String Test', function () {
         assert.equal("Hello".charAt(0), 'H');
     });
 });
+
