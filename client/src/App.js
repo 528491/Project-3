@@ -25,6 +25,8 @@ import EventForm from "./pages/EventForm/EventForm";
 
 import Test from "./pages/SignUp/Test";
 import axios from 'axios';
+import Onboarding from "./pages/Onboarding/Onboarding";
+
 
 
 class App extends Component {
@@ -81,67 +83,75 @@ class App extends Component {
           console.log(err);
         });
   }
+  
+  componentDidMount() {
+    // const authenticated = this.state.authenticated;
+    // const redirect = this.redirect;
+    // console.log(this.state);
+    console.log(this.state.authenticated);
+    if(localStorage.getItem('access')) {
+      this.setState({authenticated: true})
+    }
+  }
 
 
 
   render() {
-    const authenticated = this.state.authenticated;
-    const redirect = this.redirect;
-    console.log(this.state);
-    if(localStorage.getItem('access')) {
-      this.setState({authenticated: true})
-    }
+    
 
 
     return (
-      <Container>
+      <div id="app">
 
-
-        {/* <AppNavbar/> */}
-        {/* <LoginModal buttonLabel="Login" /> */}
         <Router>
-        <Switch>
+          <Switch>
 
-          {/* Change the exact path for this later to just /. This is just for testing right now. */}
-          <Route exact path="/splash" render={props =>
-            <Container>
-              <SplashNavbar/>
-              <SplashHome
-                {...props}
-                authenticate={this.authenticate}
-                deAuthenticate={this.deAuthenticate}
-                authenticated={this.state.authenticated}
-              />
-            </Container>
-            }
-          />
-        <Route exact path="/signup" render={props =>
-            <Container>
-            {/* <SplashNavbar/> */}
-            <SignUp
-              {...props}
-              authenticate={this.authenticate}
-              deAuthenticate={this.deAuthenticate}
-              authenticated={this.state.authenticated}
+            <Route exact path="/splash" render={props =>
+              <div>
+                <AppNavbar/>
+                <Home
+                  {...props}
+                  authenticate={this.authenticate}
+                  deAuthenticate={this.deAuthenticate}
+                  authenticated={this.state.authenticated}
+                />
+              </div>}
             />
-            </Container>}
-          />
- 
+
+            {/* <Switch> */}
+
+              <Route exact path="/signup" render={props =>
+                <SignUp
+                      {...props}
+                      authenticate={this.authenticate}
+                      deAuthenticate={this.deAuthenticate}
+                      authenticated={this.state.authenticated}
+                />}
+              />
+
+              <Route exact path="/signup/onboarding" render={props =>
+                <Onboarding
+                  {...props}
+                  authenticate={this.authenticate}
+                  deAuthenticate={this.deAuthenticate}
+                  authenticated={this.state.authenticated}
+                />}
+              />
+
+            {/* </Switch> */}
+
+
 
             <Route exact path="/" render={props =>
-              // !this.state.authenticated ? this.redirect() :
-              <Container>
-              <SplashNavbar/>
-              <Home
-                {...props}
-                authenticate={this.authenticate}
-                deAuthenticate={this.deAuthenticate}
-                authenticated={this.state.authenticated}
-                email={this.state.user}
-              />
-              </Container>}
+              !this.state.authenticated ? this.redirect() :
+                <Test
+                  {...props}
+                  authenticate={this.authenticate}
+                  deAuthenticate={this.deAuthenticate}
+                  authenticated={this.state.authenticated}
+                />}
             />
-            
+
             <Route exact path="/test" render={props =>
               !this.state.authenticated ? this.redirect() :
                 <Test
@@ -153,25 +163,19 @@ class App extends Component {
             />
 
             <Route exact path="/calendar" render={props =>
-              !this.state.authenticated ? this.redirect() :
-                // <Test
-                //   {...props}
-                //   authenticate={this.authenticate}
-                //   deAuthenticate={this.deAuthenticate}
-                //   authenticated={this.state.authenticated}
-                // />}
-
-                <CalendarDisplay
-                  {...props}
-                  authenticate={this.authenticate}
-                  deAuthenticate={this.deAuthenticate}
-                  authenticated={this.state.authenticated}
-                  email={this.state.user}
-                />}
+              !this.state.authenticated ? this.redirect() 
+              :
+              <CalendarDisplay
+                {...props}
+                authenticate={this.authenticate}
+                deAuthenticate={this.deAuthenticate}
+                authenticated={this.state.authenticated}
+                email={this.state.user}
+              />}
             />
 
-            {/* <Route exact path="/calendar" component={CalendarDisplay}/> */}
-            {/* <Route exact path="/calendar/:year/:month/:day" component={EventForm}/> */}
+              {/* <Route exact path="/calendar" component={CalendarDisplay}/> */}
+              {/* <Route exact path="/calendar/:year/:month/:day" component={EventForm}/> */}
 
             <Route exact path="/calendar/:year/:month/:day" render={props =>
               !this.state.authenticated ? this.redirect() :
@@ -184,12 +188,13 @@ class App extends Component {
 
                 />}
             />
+
+
           </Switch>
       </Router>
-
-
-     </Container>
-
+     </div>
+            
+            
     );
   }
 }
