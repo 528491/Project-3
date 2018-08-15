@@ -240,7 +240,7 @@ class SignUp extends Component {
     render() {
 
      if(this.state.firstCredsValidated) {
-        return (<Redirect to='onboarding' biz={"Rot into pieces, Papa John's"}/>);
+        return (<Redirect to='signup/onboarding' biz={"Rot into pieces, Papa John's"}/>);
       } else if (this.state.authenticated) {
         return (<Redirect to='calendar'/>);
       };

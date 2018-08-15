@@ -101,33 +101,29 @@ class App extends Component {
             </div>}
           />
 
-        <Route exact path="/signup" render={props =>
 
 
 
             <Switch>
-            <SignUp
-              {...props}
-              authenticate={this.authenticate}
-              deAuthenticate={this.deAuthenticate}
-              authenticated={this.state.authenticated}
-            />
-            
+              <Route exact path="/signup" render={props =>
+              <SignUp
+                    {...props}
+                    authenticate={this.authenticate}
+                    deAuthenticate={this.deAuthenticate}
+                    authenticated={this.state.authenticated}
+              />}
+              />
 
-
-
-
+            <Route exact path="/signup/onboarding" render={props =>
+                <Onboarding
+                  {...props}
+                  authenticate={this.authenticate}
+                  deAuthenticate={this.deAuthenticate}
+                  authenticated={this.state.authenticated}
+                />}
+              />
             </Switch>
-            }
-          />
-        <Route exact path="/onboarding" render={props =>
-            <Onboarding
-              {...props}
-              authenticate={this.authenticate}
-              deAuthenticate={this.deAuthenticate}
-              authenticated={this.state.authenticated}
-            />}
-          />
+
         <Route exact path="/" render={props =>
             !authenticated ? redirect() :
               <Test
