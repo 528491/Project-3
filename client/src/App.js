@@ -85,7 +85,7 @@ class App extends Component {
 
 
     return (
-      <Container>
+      <div id="app">
 
         <Router>
         <Switch>
@@ -119,7 +119,7 @@ class App extends Component {
           />
         </Switch>
       </Router>
-     </Container>
+     </div>
 
     );
   }
