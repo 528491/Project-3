@@ -85,6 +85,8 @@ class SignUp extends Component {
 
       //   }
 
+      this.props.authenticate(newUser);
+      this.setState({firstCredsValidated: true});
 
       // })
       // .catch(error => {

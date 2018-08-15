@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Row, Col, Button } from 'reactstrap';
+import React from "react";
+import { Card, CardText,
+    CardTitle,  Row, Col } from 'reactstrap';
 
 const CardDisplay = (props) => {
     return (

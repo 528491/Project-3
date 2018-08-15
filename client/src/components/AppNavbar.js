@@ -1,21 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {
-    Collapse,
     Navbar,
     NavbarToggler,
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
-    Button,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem 
+    NavLink 
 } from 'reactstrap';
 import MenuButton from "./MenuButton"
 
 import LoginModal from "./LoginModal";
+
 
 
 class AppNavbar extends React.Component {
@@ -47,7 +42,6 @@ class AppNavbar extends React.Component {
 
 
                   <NavItem>
-                    {/* <NavLink href="https://github.com/reactstrap/reactstrap">Saved Articles</NavLink> */}
                     <NavLink href="/signup">Register</NavLink>
                   </NavItem>
                 </Nav>
@@ -57,7 +51,7 @@ class AppNavbar extends React.Component {
           </div>
         );
       }
-    
+
 };
 
 export default AppNavbar;

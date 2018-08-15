@@ -63,7 +63,7 @@ class App extends Component {
   }
 
   redirect = () => {
-    return (<Redirect to='/signup' />);
+    return (<Redirect to='/splash' />);
   }
 
   login = () => {
@@ -72,6 +72,7 @@ class App extends Component {
   }
 
   logout() {
+    //not built this route yet:
       axios.get('/apis/users/logout')
         .then(function (data) {
           this.deAuthenticate();
@@ -85,7 +86,13 @@ class App extends Component {
 
   render() {
     const authenticated = this.state.authenticated;
+    const redirect = this.redirect;
     console.log(this.state);
+    if(localStorage.getItem('access')) {
+      this.setState({authenticated: true})
+    }
+
+
     return (
       <Container>
 

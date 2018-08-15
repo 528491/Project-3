@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React  from "react";
 
 const Space = () => (
     <div className="row mt-5"></div>
