@@ -45,21 +45,35 @@ class SignUp extends Component {
       });
     };
 
+    // Connected to submit button.
+    // Performs the following upon pressing the submit button. 
     handleFormSubmit = event => {
       event.preventDefault();
 
+      // Create a newUser object with the same email and password key-value pairs as this component's state
       const newUser = {
         email: this.state.email,
         password: this.state.password
       };
 
+      // Posts this user to the following api route:
       axios.post("http://localhost:3001/api/users",
       newUser
       )
+
+      // Afterwards...
       .then((data) => {
 
-
+        // If the data is successfully sent, 
+        // run the "authenticate" method included in this component's props.
+        // This "authenticate" method can be found in App.js.
         if(data.data.success) {
+
+            /* 
+              The method below will change the state of the App.js component in the following ways:
+              * authenticated: true
+              * user: newUser.email
+            */
             this.props.authenticate(newUser.email);
 
         }
@@ -71,6 +85,7 @@ class SignUp extends Component {
       });
     };
 
+    // Connected to submit button.
     handleLogin = event => {
       event.preventDefault();
 
@@ -83,8 +98,16 @@ class SignUp extends Component {
       .then( data => {
         console.log(data);
 
+        // If the data is successfully sent, 
+        // run the "authenticate" method included in this component's props.
+        // This "authenticate" method can be found in App.js.
         if(data.data.success) {
 
+             /* 
+              The method below will change the state of the App.js component in the following ways:
+              * authenticated: true
+              * user: newUser.email
+            */
             this.props.authenticate(user);
         }
       })
@@ -94,12 +117,20 @@ class SignUp extends Component {
     }
 
     submitButton(){
-      return (!this.state.registered ? (
+      return (
+
+        // If the "registered" state of this component is false,
+        // the submit button will be a register button.
+        !this.state.registered ? (
         <Button onClick={this.handleFormSubmit} className="reg-form-btn">
           <i className="fas fa-lock" aria-hidden="true">&nbsp;</i> Create Account
-        </Button>)
+        </Button>
+        )
+
+        // Otherwise, the submit button will be a login button.
         :
-        (<Button onClick={this.handleLogin}>Log In</Button>));
+        (<Button onClick={this.handleLogin}>Log In</Button>)
+      );
     }
 
 
@@ -131,37 +162,61 @@ class SignUp extends Component {
 
     }
 
-
+    // Method to check if passwords match.
     passwordMatch = () => {
+
+      // If the passwords do not match, display a message.
       if(!this.state.passwordMatch) {
         return (
           <FormText aria-live="polite">Passwords must contain an @ and match</FormText>
         )
       }
-
     }
 
+    // Changes the clickable text at the top-right of the page.
+    // When this message is clicked, the form displayed will change.
     navButton = () => {
+      
+      // If the "registered" state is false,
+      // return the message "Already have an account?"
       if (!this.state.registered) {
-      return  (<p id="form-describe" onClick={this.switchForm}>Already have an account?</p>)
-    } else {
-      return ( <p id="form-describe" onClick={this.switchForm}>New to FamilyDay? Sign Up</p>)
+        return  (<p id="form-describe" onClick={this.switchForm}>Already have an account?</p>)
+      } 
+      
+      // Otherwise, return another message.
+      else {
+        return ( <p id="form-describe" onClick={this.switchForm}>New to FamilyDay? Sign Up</p>)
       }
     }
 
+    // Method to switch form between "register" and "login"
+    // Switching is controlled via the state.registered variable.
+    // Controls navButton and displayForm.
     switchForm = () => {
+
+      // Switches the state.registered variable to its opposite.
       this.setState({registered: !this.state.registered})
     }
 
+    // method to display the proper form to the page.
+    // Dependent on state.registered, just like the navButton method.
     displayForm = () => {
       console.log('displayForm', this.state);
+
+      // if "registered" is false,
       if(!this.state.registered) {
+
+          // Displays the registration page.
           return this.displayRegistration();
-      } else {
+      } 
+      
+      // Otherwise, display the login page.
+      else {
         return this.displayLogin();
       }
     }
 
+    // Method to display the login form.
     displayLogin(){
 
     let submitButton = this.submitButton();
@@ -184,6 +239,7 @@ class SignUp extends Component {
       )
     }
 
+    // Method to display the registration form.
     displayRegistration = () => {
       let passwordsMatchWarning = this.passwordMatch();
 
@@ -203,11 +259,14 @@ class SignUp extends Component {
             <Input className="reg-input" type="email" name="emailConfirm" id="emailConfirm"
               onChange={this.handleInputChange} onFocus={this.displayInstructions} required/>
           </FormGroup>
+
+          {/* This is actually the "password" field. */}
           <FormGroup>
             <Label for="phone">Phone <span id="fine-print">(recommended)</span></Label>
           <Input type="password" name="password" id="phone" className="reg-input"
               onChange={this.handleInputChange}/>
           </FormGroup>
+
           <FormGroup>
             <Label for="fname">First Name</Label>
             <Input type="text" name="fname" id="fname" className="reg-input"
