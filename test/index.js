@@ -17,7 +17,7 @@ it("Trivial test to make sure that we successfully imported Mocha", function(don
     done();
 });
 
-it("Verify we can visit the base route without any errors.", function(done){
+it("Verify we can visit the base route (/) without any errors.", function(done){
     request(app)
         .get("/")
         .end(function(err, res){
@@ -26,7 +26,7 @@ it("Verify we can visit the base route without any errors.", function(done){
         });
 });
 
-it("Verify that the base route returns type html as opposed to another type, such as json", function(done){
+it("Verify that the base route (/) returns type html as opposed to another type, such as json", function(done){
     request(app)
         .get("/")
         .expect('Content-Type', /html/)
@@ -36,17 +36,15 @@ it("Verify that the base route returns type html as opposed to another type, suc
         });
 });
 
-// test("Verify that the base route returns type html and not .json", function(t){
-//     request(app)
-//         .get("/")
-//         .expect('Content-Type', /html/)
-//         .expect(200)
-//         .end(function(err, res){
-//             t.error(err, "No Error");
-//             // app.close();
-//             t.end();
-//         });
-// });
+it("Verify that the base route (/) returns status 200, as opposed to an error such as 404", function(done){
+    request(app)
+        .get('/')
+        .expect(200)
+        .end(function(err, res){
+            if (err) throw err;
+            done()
+        });
+});
 
 // test("Verify that the route /api/tests returns a json response", function(t){
 //     request(app)
