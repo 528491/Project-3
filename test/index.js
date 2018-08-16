@@ -21,9 +21,19 @@ it("Verify we can visit the base route without any errors.", function(done){
     request(app)
         .get("/")
         .end(function(err, res){
+            if (err) throw err;
             done();
         });
+});
 
+it("Verify that the base route returns type html as opposed to another type, such as json", function(done){
+    request(app)
+        .get("/")
+        .expect('Content-Type', /html/)
+        .end(function(err, res){
+            if (err) throw err;
+            done();
+        });
 });
 
 // test("Verify that the base route returns type html and not .json", function(t){
