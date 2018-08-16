@@ -49,7 +49,7 @@ class SignUp extends Component {
     };
 
     // Connected to submit button.
-    // Performs the following upon pressing the submit button. 
+    // Adds user to "users" collection in database upon pressing the submit button. 
     handleFormSubmit = event => {
       event.preventDefault();
 
@@ -69,10 +69,18 @@ class SignUp extends Component {
       // Afterwards...
       .then((data) => {
 
+        console.log(data);
+
+        if (data.data.duplicateUser) {
+          // Replace with Modal
+          alert("Sorry, that username has been taken");
+          console.log("Already taken.");
+        }
+
         // If the data is successfully sent, 
         // run the "authenticate" method included in this component's props.
         // This "authenticate" method can be found in App.js.
-        if(data.data.success) {
+        else if(data.data.success) {
 
             /* 
               The method below will change the state of the App.js component in the following ways:
@@ -81,6 +89,8 @@ class SignUp extends Component {
             */
             this.props.authenticate(newUser.email);
             this.redirectToCalendar();
+            this.setState({firstCredsValidated: true});
+
 
 
         }
@@ -93,8 +103,8 @@ class SignUp extends Component {
         console.log(error.response);
       });
 
-      this.props.authenticate(newUser);
-      this.setState({firstCredsValidated: true});
+      // this.props.authenticate(newUser);
+      // this.setState({firstCredsValidated: true});
     };
 
     // Connected to submit button.
