@@ -50,11 +50,12 @@ class App extends Component {
     return this.state.authenticated
   }
 
-  authenticate = user => {
+  authenticate = newUser => {
     localStorage.clear();
-    localStorage.setItem('access', user.email)
+    localStorage.setItem('access', newUser.email)
     this.setState({
-      authenticated: true
+      authenticated: true,
+      user: newUser
     })
   }
 
@@ -184,7 +185,7 @@ class App extends Component {
                 authenticate={this.authenticate}
                 deAuthenticate={this.deAuthenticate}
                 authenticated={this.state.authenticated}
-                email={this.state.user}
+                email={this.state.user.email}
               />}
             />
 
@@ -198,7 +199,7 @@ class App extends Component {
                   authenticate={this.authenticate}
                   deAuthenticate={this.deAuthenticate}
                   authenticated={this.state.authenticated}
-                  email={this.state.user}
+                  email={this.state.user.email}
 
                 />}
             />
