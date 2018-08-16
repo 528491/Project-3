@@ -3,6 +3,7 @@ import {Container, Form, FormGroup, Label, Input, Button, Jumbotron, FormFeedbac
 import axios from "axios";
 import { Redirect, Link } from 'react-router-dom';
 import "./SignUp.css";
+import Onboarding from '../Onboarding'
 
 
 class SignUp extends Component {
@@ -33,9 +34,10 @@ class SignUp extends Component {
           fname: "",
           lname: "",
           errors: [],
+          phone: "",
           focused: false,
           registered: false,
-          passwordsMatch: true,
+          emailsMatch: true,
           firstCredsValidated: false
         };
 
@@ -48,64 +50,9 @@ class SignUp extends Component {
       });
     };
 
-    // Connected to submit button.
-    // Adds user to "users" collection in database upon pressing the submit button. 
-    handleFormSubmit = event => {
-      event.preventDefault();
-
-      // Create a newUser object with the same email and password key-value pairs as this component's state
-      const newUser = {
-        email: this.state.email,
-        password: this.state.password,
-        firstName: this.state.fname,
-        lastName: this.state.lname
-      };
-
-      // Posts this user to the following api route:
-      axios.post("http://localhost:3001/api/users",
-      newUser
-      )
-
-      // Afterwards...
-      .then((data) => {
-
-        console.log(data);
-
-        if (data.data.duplicateUser) {
-          // Replace with Modal
-          alert("Sorry, that username has been taken");
-          console.log("Already taken.");
-        }
-
-        // If the data is successfully sent, 
-        // run the "authenticate" method included in this component's props.
-        // This "authenticate" method can be found in App.js.
-        else if(data.data.success) {
-
-            /* 
-              The method below will change the state of the App.js component in the following ways:
-              * authenticated: true
-              * user: newUser.email
-            */
-            this.props.authenticate(newUser.email);
-            this.redirectToCalendar();
-            this.setState({firstCredsValidated: true});
-
-
-
-        }
-
-      // this.props.authenticate(newUser);
-      // this.setState({firstCredsValidated: true});
-
-      })
-      .catch(error => {
-        console.log(error.response);
-      });
-
-      // this.props.authenticate(newUser);
-      // this.setState({firstCredsValidated: true});
-    };
+    handleFirstStepSubmit = event => {
+      this.setState({firstCredsValidated: true});
+    }
 
     // Connected to submit button.
     handleLogin = event => {
@@ -147,18 +94,11 @@ class SignUp extends Component {
       })
     }
 
-    submitButton(){
-      return (
-
-        // If the "registered" state of this component is false,
-        // the submit button will be a register button.
-        !this.state.registered ? (
-        <Button onClick={this.handleFormSubmit} className="reg-form-btn">
+    submitButton = () => {
+      return (!this.state.registered ? (
+        <Link to="signup/onboarding" className="reg-form-link" user={this.state}>
           <i className="fas fa-lock" aria-hidden="true">&nbsp;</i> Create Account
-        </Button>
-        )
-
-        // Otherwise, the submit button will be a login button.
+        </Link>)
         :
         (<Button onClick={this.handleLogin}>Log In</Button>)
       );
@@ -168,20 +108,7 @@ class SignUp extends Component {
 
     handleFocusChange = event => {
       event.preventDefault();
-      const { name, value } = event.target;
-      console.log(event);
-      console.log(this.state);
-      switch(name) {
-        case "email":
-          if (this.state.emailConfirm && this.state.email !== this.state.emailConfirm) {
-            this.setState({ passwordMatch: false })
-          } else {
-            this.setState({ passwordMatch: true })
-          }
-          break;
-        default:
-          break;
-      }
+      //const { name, value } = event.target;
       this.setState({focused: true})
 
     }
@@ -194,13 +121,13 @@ class SignUp extends Component {
     }
 
     // Method to check if passwords match.
-    passwordMatch = () => {
+    // passwordMatch = () => {
 
-      // If the passwords do not match, display a message.
-      if(!this.state.passwordMatch) {
+    emailsMatchWarning = () => {
+      if(!this.state.emailsMatch) {
         return (
-          <FormText aria-live="polite">Passwords must contain an @ and match</FormText>
-        )
+          <FormFeedback invalid={"true"} aria-live="polite">Emails must contain an @ and match.</FormFeedback>
+        );
       }
     }
 
@@ -263,19 +190,25 @@ class SignUp extends Component {
           <Input type="password" name="password" id="password" className="reg-input"
               onChange={this.handleInputChange}/>
           </FormGroup>
-          <FormGroup id="submit-zone">
-            { submitButton }
-          </FormGroup>
-        </Form>
-      )
+        </div>
+      );
+    }
+
+    handleEmailInput = event => {
+      if(this.state.emailConfirm &&
+         this.state.email.indexOf('@') > -1 &&
+         this.state.email.slice(0, event.target.value.length) !== event.target.value) {
+          this.setState({emailsMatch: false});
+      } else {
+          this.setState({emailsMatch: true});
+      }
     }
 
     // Method to display the registration form.
     displayRegistration = () => {
       let passwordsMatchWarning = this.passwordMatch();
 
-      let submitButton = this.submitButton();
-      return(
+      const emailsMatchWarning = this.emailsMatchWarning();
 
         <Form id="reg-form" aria-label="registration-form" aria-describedby="reg-form-label" autoComplete="off">
 
@@ -288,15 +221,14 @@ class SignUp extends Component {
           <FormGroup>
             <Label for="emailConfirm">Confirm email</Label>
             <Input className="reg-input" type="email" name="emailConfirm" id="emailConfirm"
-              // onChange={this.handleInputChange} onFocus={this.displayInstructions} required/>
-              onChange={this.handleInputChange} onFocus={this.displayInstructions}/>
-
+              onChange={handleEmailInput} invalid={!this.state.emailsMatch} required/>
+              { emailsMatchWarning }
           </FormGroup>
 
           {/* This is actually the "password" field. */}
           <FormGroup>
             <Label for="phone">Phone <span id="fine-print">(recommended)</span></Label>
-          <Input type="password" name="password" id="phone" className="reg-input"
+          <Input type="text" name="phone" id="phone" className="reg-input"
               onChange={this.handleInputChange}/>
           </FormGroup>
 
@@ -329,10 +261,16 @@ class SignUp extends Component {
         return (<Redirect to='/calendar'/>);
       }
 
-      let submitButton = this.submitButton();
-      let navButton = this.navButton();
+      if (this.state.authenticated) {
+        return (<Redirect to='calendar'/>);
+      };
 
-      console.log(this.state);
+
+      const submitButton = this.submitButton();
+      const navButton = this.navButton();
+      const backArrow = this.displayBackArrow();
+      const displayForm = this.displayForm()
+      const displayInstructions = this.displayInstructions();
 
       return (
         <Jumbotron id="reg-container">
@@ -349,8 +287,13 @@ class SignUp extends Component {
               <p className="reg-form-teaser">Family Day.</p>
               <p className="reg-form-teaser">Fully Planned.</p>
             </Container>
-
-            { this.displayForm() }
+            <hr></hr>
+                <Form id="reg-form" aria-label="registration-form" aria-describedby="reg-form-label" autoComplete="off">
+                  { displayForm }
+                <FormGroup id="submit-zone">
+                  { submitButton }
+                </FormGroup>
+              </Form>
           </Container>
 
         </Jumbotron >

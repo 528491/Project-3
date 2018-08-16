@@ -1,0 +1,7 @@
+div#walkthrough-global {
+  height: 100%;
+}
+
+div.carousel, div.carousel-inner, div.slide, div.carousel-item.active {
+  height: 100% !important;
+}

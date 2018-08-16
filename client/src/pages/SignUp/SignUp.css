@@ -2,7 +2,11 @@
 div#reg-container {
   background: #F1F1F1;
   font-family: 'Gothic A1', sans-serif;
-  padding: 2rem 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
 }
 
 #reg-form-container {
@@ -115,4 +119,51 @@ p#form-describe {
   font-weight: 400;
   font-family: 'Gothic A1', sans-serif;
   cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+button#form-describe:focus {
+  outline: 2px auto -webkit-focus-ring-color;
+}
+button#form-describe:hover {
+  color: #1c89ff;
+  border-bottom: 2px solid #1c89ff;
+}
+
+div#form-nav-container {
+  width: 360px;
+  margin-top: 5px;
+  margin-bottom: 2%;
+}
+
+div#arrows-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+i#back-arrow {
+  font-size: 80%;
+  vertical-align: 10%;
+}
+
+div#teaser-text {
+  margin-top: 8px;
+  margin-bottom: 5px;
+  padding: 0 2px 0 2px;
+}
+
+a.reg-form-link {
+  letter-spacing: 1px;
+  font-size: 15px;
+  line-height: 2em;
+  width: 200px;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background: #0077C5;
+  border: #0077C5;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.7);
 }

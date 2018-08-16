@@ -4,7 +4,8 @@ import {
   Route,
   Switch,
   Redirect
-} from 'react-router-dom'
+} from 'react-router-dom';
+//import { TransitionGroup, CSSTransition } from "react-transition-group";
 // import {
 //   Fade
 // } from 'react-router';
@@ -14,15 +15,10 @@ import './App.css';
 // import "./pages/HelloWorld";
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/SignUp/SignUp";
-import SplashHome from "./pages/Splash/SplashHome"
+import Onboarding from "./pages/Onboarding/Onboarding";
+import Walkthrough from "./pages/Walkthrough/Walkthrough";
 import AppNavbar from "./components/AppNavbar";
-
-import SplashNavbar from "./components/SplashNavbar";
-import {Container} from "reactstrap";
-import LoginModal from "./components/LoginModal";
-import CalendarDisplay from "./pages/CalendarDisplay/CalendarDisplay";
-import EventForm from "./pages/EventForm/EventForm";
-
+//import { Container } from "reactstrap"
 import Test from "./pages/SignUp/Test";
 import axios from 'axios';
 import Onboarding from "./pages/Onboarding/Onboarding";
@@ -31,20 +27,19 @@ import Onboarding from "./pages/Onboarding/Onboarding";
 
 class App extends Component {
 
-  // constructor() {
-  //   super();
-  //
-  // }
+  constructor(props) {
+    super(props)
+    this.state = {
+      tests: [],
+      authenticated: !!localStorage.getItem('access')
+    }
+  }
+
   state = {
     tests: [],
     authenticated: false,
     user: null
   }
-  // componentDidMount(){
-  //   API.getTests().then(res =>
-  //   this.setState({tests:res.data}))
-  //   .catch(err=>console.log(err));
-  // }
 
   authenticated() {
     return this.state.authenticated
@@ -112,7 +107,9 @@ class App extends Component {
 
 
   render() {
-    
+    const authenticated = this.state.authenticated;
+    const redirect = this.redirect;
+    console.log(this.state);
 
 
     return (
@@ -120,21 +117,17 @@ class App extends Component {
 
         <Router>
           <Switch>
-
-            <Route exact path="/splash" render={props =>
-              <div>
-                <AppNavbar/>
-                <Home
-                  {...props}
-                  authenticate={this.authenticate}
-                  deAuthenticate={this.deAuthenticate}
-                  authenticated={this.state.authenticated}
-                />
-              </div>}
+          <Route exact path="/splash" render={props =>
+            <div>
+            <AppNavbar/>
+            <Home
+              {...props}
+              authenticate={this.authenticate}
+              deAuthenticate={this.deAuthenticate}
+              authenticated={this.state.authenticated}
             />
-
-            {/* <Switch> */}
-
+            </div>}
+          />
               <Route exact path="/signup" render={props =>
                 <SignUp
                       {...props}
@@ -152,6 +145,14 @@ class App extends Component {
                   authenticated={this.state.authenticated}
                 />}
               />
+            <Route exact path="/walkthrough" render={props =>
+                  <Walkthrough
+                    {...props}
+                    authenticate={this.authenticate}
+                    deAuthenticate={this.deAuthenticate}
+                    authenticated={this.state.authenticated}
+                  />}
+                />
 
             {/* </Switch> */}
 

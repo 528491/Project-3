@@ -1,0 +1,52 @@
+a.password-form-link {
+  letter-spacing: 1px;
+  font-size: 15px;
+  line-height: 2em;
+  width: 200px;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  padding: 6px;
+  background: #0077C5;
+  border: #0077C5;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.7);
+}
+
+div#password-container {
+  background: #F1F1F1;
+  font-family: 'Gothic A1', sans-serif;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  height: 100%;
+}
+
+
+
+#reg-form label, input {
+  color: #4C4C4C;
+  font-size: 13px;
+}
+
+#reg-form input {
+  border: 1px solid #C1C5C8;
+  margin-bottom: 1.5em;
+}
+
+#reg-form label {
+  margin-bottom: .25em;
+}
+
+#password input:focus{
+  border: 1px solid #52A8EC;
+  outline: 0;
+  border-color: rgba(82,168,236,.8);
+  box-shadow: 0 1px 1px rgba(0,0,0,.075) inset, 0 0 8px rgba(82,168,236,.6);
+}
+
+div.extra {
+    margin-top: 4% !important;
+}
