@@ -8,6 +8,7 @@ const eventRoutes = require("./events");
 // router.use("/tests", testRoutes);
 router.use("/users", userRoutes);
 router.use("/events", eventRoutes);
+router.use('/tests', testRoutes);
 
 
 module.exports = router;

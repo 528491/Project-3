@@ -46,14 +46,17 @@ it("Verify that the base route (/) returns status 200, as opposed to an error su
         });
 });
 
-// test("Verify that the route /api/tests returns a json response", function(t){
-//     request(app)
-//         .get("/api/test")
-//         .expect("Content-Type", /json/)
-//         .expect(200);
-//     t.ok();
-//     // app.close();
-// });
+xit("Verify that the api test route (/api/tests) returns a response of type json, not html", function(done){
+    request(app)
+        .get('/api/tests')
+        .expect("Content-Type", /json/)
+        .end(function(err, res){
+            if (err) throw err;
+            done();
+        });
+});
+
+
 
 // //Only one response from /api.tests
 // //Will be used for testing other api routes as well
