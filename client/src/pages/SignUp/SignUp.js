@@ -93,8 +93,8 @@ class SignUp extends Component {
       //   console.log(error.response);
       // });
 
-      this.props.authenticate(newUser);
-      this.setState({firstCredsValidated: true});
+      // this.props.authenticate(newUser);
+      // this.setState({firstCredsValidated: true});
     };
 
     // Connected to submit button.
@@ -123,7 +123,9 @@ class SignUp extends Component {
               * user: newUser.email
             */
             this.props.authenticate(user);
-            this.redirectToCalendar();
+            // this.redirectToCalendar();
+            this.setState({firstCredsValidated: true});
+
         }
 
         // else {
@@ -276,7 +278,9 @@ class SignUp extends Component {
           <FormGroup>
             <Label for="emailConfirm">Confirm email</Label>
             <Input className="reg-input" type="email" name="emailConfirm" id="emailConfirm"
-              onChange={this.handleInputChange} onFocus={this.displayInstructions} required/>
+              // onChange={this.handleInputChange} onFocus={this.displayInstructions} required/>
+              onChange={this.handleInputChange} onFocus={this.displayInstructions}/>
+
           </FormGroup>
 
           {/* This is actually the "password" field. */}

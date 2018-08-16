@@ -38,6 +38,13 @@ class Home extends Component {
             {/* Link to Register/Login */}
           {/* </Link> */}
 
+          
+          {localStorage.getItem('access') ? (
+              <button onClick={this.props.deAuthenticate()}></button>
+            )
+            :
+              (<div></div>)}
+
       </Container>
     )
   }

@@ -58,10 +58,18 @@ class App extends Component {
     })
   }
 
-  deAuthenticate() {
+  // deAuthenticate() {
+  //   this.setState({
+  //     authenticated: false
+  //   })
+  //   localStorage.clear()
+  // }
+
+  deAuthenticate = () => {
     this.setState({
       authenticated: false
     })
+    localStorage.clear();
   }
 
   redirect = () => {
@@ -73,24 +81,30 @@ class App extends Component {
     return (<Redirect to='/' />);
   }
 
-  logout() {
-    //not built this route yet:
-      axios.get('/apis/users/logout')
-        .then(function (data) {
-          this.deAuthenticate();
-          window.location.reload();
-        }.bind(this)).catch(function (err) {
-          console.log(err);
-        });
+  // logout() {
+  //   //not built this route yet:
+  //     axios.get('/apis/users/logout')
+  //       .then(function (data) {
+  //         this.deAuthenticate();
+  //         window.location.reload();
+  //       }.bind(this)).catch(function (err) {
+  //         console.log(err);
+  //       });
+  // }
+
+  logout = () => {
+    this.deAuthenticate();
+    window.location.reload();
   }
   
   componentDidMount() {
     // const authenticated = this.state.authenticated;
     // const redirect = this.redirect;
     // console.log(this.state);
-    console.log(this.state.authenticated);
+    // console.log(this.state.authenticated);
     if(localStorage.getItem('access')) {
       this.setState({authenticated: true})
+      console.log(this.state.authenticated)
     }
   }
 
@@ -188,6 +202,7 @@ class App extends Component {
 
                 />}
             />
+
 
 
           </Switch>
