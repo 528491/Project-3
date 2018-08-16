@@ -3,6 +3,7 @@ import {Container, Form, FormGroup, Label, Input, Button, Jumbotron, FormFeedbac
 import axios from "axios";
 import { Redirect, Link } from 'react-router-dom';
 import "./SignUp.css";
+import Onboarding from '../Onboarding'
 
 
 class SignUp extends Component {
@@ -17,9 +18,10 @@ class SignUp extends Component {
           fname: "",
           lname: "",
           errors: [],
+          phone: "",
           focused: false,
           registered: false,
-          passwordsMatch: true,
+          emailsMatch: true,
           firstCredsValidated: false
         };
 
@@ -32,37 +34,9 @@ class SignUp extends Component {
       });
     };
 
-    handleFormSubmit = event => {
-
-
-      // if(false) {
-      // } else {
-      // event.preventDefault();
-      //
-      const newUser = {
-        email: this.state.email,
-        password: this.state.password,
-        firstName: this.state.fname,
-        lastName: this.state.lname
-      };
-      // console.log(newUser);
-      // axios.post("http://localhost:3001/api/users",
-      // newUser
-      // )
-      // .then((data) => {
-      //   if(data.data.success) {
-      //       this.props.authenticate();
-      //   }
-      // })
-      // .catch(error => {
-      //   console.log(error.response);
-      // });
-      // }
-
-      this.props.authenticate(newUser);
+    handleFirstStepSubmit = event => {
       this.setState({firstCredsValidated: true});
-
-    };
+    }
 
     handleLogin = event => {
       event.preventDefault();
@@ -88,9 +62,9 @@ class SignUp extends Component {
 
     submitButton = () => {
       return (!this.state.registered ? (
-        <Button onClick={this.handleFormSubmit} className="reg-form-btn">
+        <Link to="signup/onboarding" className="reg-form-link" user={this.state}>
           <i className="fas fa-lock" aria-hidden="true">&nbsp;</i> Create Account
-        </Button>)
+        </Link>)
         :
         (<Button onClick={this.handleLogin}>
           <i className="fas fa-lock" aria-hidden="true">&nbsp;</i> Log In</Button>));
@@ -100,7 +74,7 @@ class SignUp extends Component {
 
     handleFocusChange = event => {
       event.preventDefault();
-      const { name, value } = event.target;
+      //const { name, value } = event.target;
       this.setState({focused: true})
 
     }
@@ -111,10 +85,10 @@ class SignUp extends Component {
     }
 
 
-    passwordsMatchWarning = () => {
-      if(!this.state.passwordsMatch) {
+    emailsMatchWarning = () => {
+      if(!this.state.emailsMatch) {
         return (
-          <FormFeedback invalid={"true"} aria-live="polite">Passwords must contain an @ and match.</FormFeedback>
+          <FormFeedback invalid={"true"} aria-live="polite">Emails must contain an @ and match.</FormFeedback>
         );
       }
     }
@@ -168,16 +142,15 @@ class SignUp extends Component {
       if(this.state.emailConfirm &&
          this.state.email.indexOf('@') > -1 &&
          this.state.email.slice(0, event.target.value.length) !== event.target.value) {
-          this.setState({passwordsMatch: false});
+          this.setState({emailsMatch: false});
       } else {
-          this.setState({passwordsMatch: true});
+          this.setState({emailsMatch: true});
       }
     }
 
     displayRegistration = () => {
 
-      const passwordsMatchWarning = this.passwordsMatchWarning();
-      const submitButton = this.submitButton();
+      const emailsMatchWarning = this.emailsMatchWarning();
 
       const handleEmailInput = event => {
         this.handleInputChange(event);
@@ -194,12 +167,12 @@ class SignUp extends Component {
           <FormGroup>
             <Label for="emailConfirm">Confirm email</Label>
             <Input className="reg-input" type="email" name="emailConfirm" id="emailConfirm"
-              onChange={handleEmailInput} invalid={!this.state.passwordsMatch} required/>
-              { passwordsMatchWarning }
+              onChange={handleEmailInput} invalid={!this.state.emailsMatch} required/>
+              { emailsMatchWarning }
           </FormGroup>
           <FormGroup>
             <Label for="phone">Phone <span id="fine-print">(recommended)</span></Label>
-          <Input type="password" name="password" id="phone" className="reg-input"
+          <Input type="text" name="phone" id="phone" className="reg-input"
               onChange={this.handleInputChange}/>
           </FormGroup>
           <FormGroup>
@@ -239,11 +212,10 @@ class SignUp extends Component {
 
     render() {
 
-     if(this.state.firstCredsValidated) {
-        return (<Redirect to='signup/onboarding' biz={"Rot into pieces, Papa John's"}/>);
-      } else if (this.state.authenticated) {
+      if (this.state.authenticated) {
         return (<Redirect to='calendar'/>);
       };
+
 
       const submitButton = this.submitButton();
       const navButton = this.navButton();

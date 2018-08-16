@@ -4,7 +4,8 @@ import {
   Route,
   Switch,
   Redirect
-} from 'react-router-dom'
+} from 'react-router-dom';
+//import { TransitionGroup, CSSTransition } from "react-transition-group";
 // import {
 //   Fade
 // } from 'react-router';
@@ -16,23 +17,25 @@ import Home from "./pages/Home/Home";
 import SignUp from "./pages/SignUp/SignUp";
 import Onboarding from "./pages/Onboarding/Onboarding";
 import AppNavbar from "./components/AppNavbar";
-import { Container } from "reactstrap"
+//import { Container } from "reactstrap"
 import Test from "./pages/SignUp/Test";
 import axios from 'axios';
 
 
 class App extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      tests: [],
+      authenticated: !!localStorage.getItem('access')
+    }
+  }
+
   state = {
     tests: [],
     authenticated: false
   }
-
-  // componentDidMount(){
-  //   API.getTests().then(res =>
-  //   this.setState({tests:res.data}))
-  //   .catch(err=>console.log(err));
-  // }
 
   authenticated() {
     return this.state.authenticated
@@ -78,17 +81,13 @@ class App extends Component {
     const authenticated = this.state.authenticated;
     const redirect = this.redirect;
     console.log(this.state);
-    if(localStorage.getItem('access')) {
-      this.setState({authenticated: true})
-    }
 
 
     return (
       <div id="app">
 
         <Router>
-        <Switch>
-
+          <Switch>
           <Route exact path="/splash" render={props =>
             <div>
             <AppNavbar/>
@@ -100,11 +99,6 @@ class App extends Component {
             />
             </div>}
           />
-
-
-
-
-            <Switch>
               <Route exact path="/signup" render={props =>
               <SignUp
                     {...props}
@@ -122,7 +116,6 @@ class App extends Component {
                   authenticated={this.state.authenticated}
                 />}
               />
-            </Switch>
 
         <Route exact path="/" render={props =>
             !authenticated ? redirect() :
@@ -134,6 +127,7 @@ class App extends Component {
               />}
           />
         </Switch>
+
       </Router>
      </div>
 

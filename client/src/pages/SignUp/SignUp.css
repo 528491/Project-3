@@ -6,7 +6,7 @@ div#reg-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+  margin: 0;
 }
 
 #reg-form-container {
@@ -148,7 +148,8 @@ button#form-describe:hover {
 
 div#form-nav-container {
   width: 360px;
-  margin-top: 4px;
+  margin-top: 5px;
+  margin-bottom: 2%;
 }
 
 div#arrows-container {
@@ -165,4 +166,20 @@ div#teaser-text {
   margin-top: 8px;
   margin-bottom: 5px;
   padding: 0 2px 0 2px;
+}
+
+a.reg-form-link {
+  letter-spacing: 1px;
+  font-size: 15px;
+  line-height: 2em;
+  width: 200px;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background: #0077C5;
+  border: #0077C5;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.7);
 }
