@@ -24,6 +24,8 @@ div#password-container {
   height: 100%;
 }
 
+
+
 #reg-form label, input {
   color: #4C4C4C;
   font-size: 13px;
@@ -43,4 +45,8 @@ div#password-container {
   outline: 0;
   border-color: rgba(82,168,236,.8);
   box-shadow: 0 1px 1px rgba(0,0,0,.075) inset, 0 0 8px rgba(82,168,236,.6);
+}
+
+div.extra {
+    margin-top: 4% !important;
 }

@@ -16,6 +16,7 @@ import './App.css';
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/SignUp/SignUp";
 import Onboarding from "./pages/Onboarding/Onboarding";
+import Walkthrough from "./pages/Walkthrough/Walkthrough";
 import AppNavbar from "./components/AppNavbar";
 //import { Container } from "reactstrap"
 import Test from "./pages/SignUp/Test";
@@ -116,6 +117,14 @@ class App extends Component {
                   authenticated={this.state.authenticated}
                 />}
               />
+            <Route exact path="/walkthrough" render={props =>
+                  <Walkthrough
+                    {...props}
+                    authenticate={this.authenticate}
+                    deAuthenticate={this.deAuthenticate}
+                    authenticated={this.state.authenticated}
+                  />}
+                />
 
         <Route exact path="/" render={props =>
             !authenticated ? redirect() :

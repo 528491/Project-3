@@ -3,6 +3,8 @@ import { Redirect, Link } from "react-router-dom";
 import {Form, FormGroup, Label, Container, Input, Button, Jumbotron, FormFeedback, FormText } from 'reactstrap';
 import '../SignUp/SignUp.css';
 import './Onboarding.css';
+
+
 class Onboarding extends Component {
 
   constructor(props) {
@@ -88,10 +90,24 @@ class Onboarding extends Component {
 
       return (
         <Jumbotron id="password-container">
-        <div id="form-nav-container">
+        <div id="form-nav-container" className="extra">
           <Container id="reg-form-container">
         <Form id="reg-form">
 
+
+          <Container id="reg-teaser">
+            <div>
+              <p className="reg-form-teaser">No More <span id="fine-print">(or maybe just less) </span>drama.</p>
+
+              <p className="reg-form-teaser">You're almost there.</p>
+            </div>
+            <div id="teaser-text">
+              <FormText>Pick a strong password and put it somewhere you will remember.&nbsp;
+                <Link to="splash">Learn More </Link>
+              </FormText>
+            </div>
+          </Container>
+  <hr></hr>
           <FormGroup>
             <Label htmlFor="password">Password</Label>
           <Input type="password" className="reg-input" type="text" name="password" id="password"
@@ -110,7 +126,7 @@ class Onboarding extends Component {
 
 
       <FormGroup id="submit-zone">
-        <Link to="walkthrough" className="password-form-link" user={this.state}>
+        <Link to="/walkthrough" className="password-form-link" user={this.state}>
           <i className="fas fa-lock" aria-hidden="true">&nbsp;</i> Create Account
         </Link>
       </FormGroup>
