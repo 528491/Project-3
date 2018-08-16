@@ -13,13 +13,23 @@ module.exports = {
     // newUser.password = req.body.password;
     newUser.password = newUser.generateHash(req.body.password);
 
-    newUser.save()
-    .then(function() {
-      res.send({success:true});
+    User.findOne({'email' : newUser.email}, function(err, user) {
+      if (user) {
+        res.send({duplicateUser: true})
+      }
+
+      else {
+        newUser.save()
+        .then(function() {
+          res.send({success:true});
+        })
+        .catch(function(err) {
+          res.json(err);
+        });
+      }
     })
-    .catch(function(err) {
-      res.json(err);
-    });
+
+    
   },
 
   login: function(req, res){
