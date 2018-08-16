@@ -12,7 +12,7 @@ class CalendarDisplay extends React.Component {
           <div id="logo">
             <span className="icon">date_range</span>
             <span>
-              react<b>calendar</b>
+              Family<b>Day</b>
             </span>
           </div>
         </header>
