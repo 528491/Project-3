@@ -2,6 +2,53 @@ div#walkthrough-global {
   height: 100%;
 }
 
+div.walkthru-red {
+  background: #ff416c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #ff416c, #ff4b2b); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #ff416c, #ff4b2b);
+}
+div.walkthru-green {
+  background-color: green;
+  background: #FDC830;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #F37335, #FDC830);
+}
+div.walkthru-yellow {
+  background-color: yellow;
+  background: #56CCF2;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #2F80ED, #56CCF2);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #2F80ED, #56CCF2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+div#walkthrough-global-red {
+  height: 100%;
+  background: #ff416c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #ff416c, #ff4b2b); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #ff416c, #ff4b2b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+div#walkthrough-global-green {
+  height: 100%;
+  background: #FDC830;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+div#walkthrough-global-yellow {
+  height: 100%;
+  background: #56CCF2;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #2F80ED, #56CCF2);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #2F80ED, #56CCF2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+#skip-link {
+  color: white;
+  font-size: 2em;
+  opacity: .9;
+  font-family: 'Roboto', sans-serif;
+}
+
 div.carousel, div.carousel-inner, div.slide, div.carousel-item.active {
   height: 100% !important;
 }
