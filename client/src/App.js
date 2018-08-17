@@ -21,7 +21,9 @@ import AppNavbar from "./components/AppNavbar";
 //import { Container } from "reactstrap"
 import Test from "./pages/SignUp/Test";
 import axios from 'axios';
-import Onboarding from "./pages/Onboarding/Onboarding";
+// import Onboarding from "./pages/Onboarding/Onboarding";
+import CalendarDisplay from "./pages/CalendarDisplay";
+import EventForm from "./pages/EventForm/EventForm";
 
 
 

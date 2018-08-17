@@ -133,19 +133,36 @@ class SignUp extends Component {
 
     // Changes the clickable text at the top-right of the page.
     // When this message is clicked, the form displayed will change.
+    // navButton = () => {
+      
+    //   // If the "registered" state is false,
+    //   // return the message "Already have an account?"
+    //   if (!this.state.registered) {
+    //     return  (<p id="form-describe" onClick={this.switchForm}>Already have an account?</p>)
+    //   } 
+      
+    //   // Otherwise, return another message.
+    //   else {
+    //     return ( <p id="form-describe" onClick={this.switchForm}>New to FamilyDay? Sign Up</p>)
+    //   }
+    // }
+
     navButton = () => {
-      
-      // If the "registered" state is false,
-      // return the message "Already have an account?"
-      if (!this.state.registered) {
-        return  (<p id="form-describe" onClick={this.switchForm}>Already have an account?</p>)
-      } 
-      
-      // Otherwise, return another message.
-      else {
-        return ( <p id="form-describe" onClick={this.switchForm}>New to FamilyDay? Sign Up</p>)
-      }
+
+      const instructions = this.state.registered ? "New to FamilyDay?" : "Already Have An Account?" ;
+      const altLink = this.state.registered ? "Sign Up" : "Log In";
+
+      return (
+        <div>
+          <button id="form-describe"
+            onClick={this.switchForm}>
+            <span>{instructions}</span>
+            <br/>
+            <span>{altLink}</span>
+          </button>
+        </div>);
     }
+    
 
     // Method to switch form between "register" and "login"
     // Switching is controlled via the state.registered variable.
@@ -179,7 +196,8 @@ class SignUp extends Component {
 
     let submitButton = this.submitButton();
       return(
-        <Form id="reg-form" aria-label="registration-form" aria-describedby="reg-form-label" autoComplete="off">
+        <div>
+        {/* <Form id="reg-form" aria-label="registration-form" aria-describedby="reg-form-label" autoComplete="off"> */}
           <FormGroup>
             <Label for="emailConfirm">Email address</Label>
           <Input className="reg-input" type="email" name="email" id="emailConfirm"
@@ -206,17 +224,21 @@ class SignUp extends Component {
 
     // Method to display the registration form.
     displayRegistration = () => {
-      let passwordsMatchWarning = this.passwordMatch();
+      // let passwordsMatchWarning = this.passwordMatch();
 
       const emailsMatchWarning = this.emailsMatchWarning();
 
-        <Form id="reg-form" aria-label="registration-form" aria-describedby="reg-form-label" autoComplete="off">
+      const handleEmailInput = event => {
+        this.handleInputChange(event);
+        this.handleEmailInput(event);
+      };
 
+      return (
+        <div>
           <FormGroup>
             <Label for="email">Email address</Label>
           <Input invalid={this.state.focused} className="reg-input" type="text" name="email" id="email"
-              onChange={this.handleInputChange} onFocus={this.handleFocusChange} onBlur={this.handleBlur}/>
-            { passwordsMatchWarning }
+              onChange={handleEmailInput} onFocus={this.handleFocusChange} onBlur={this.handleBlur} required/>
           </FormGroup>
           <FormGroup>
             <Label for="emailConfirm">Confirm email</Label>
@@ -224,31 +246,94 @@ class SignUp extends Component {
               onChange={handleEmailInput} invalid={!this.state.emailsMatch} required/>
               { emailsMatchWarning }
           </FormGroup>
-
-          {/* This is actually the "password" field. */}
           <FormGroup>
             <Label for="phone">Phone <span id="fine-print">(recommended)</span></Label>
           <Input type="text" name="phone" id="phone" className="reg-input"
               onChange={this.handleInputChange}/>
           </FormGroup>
-
           <FormGroup>
             <Label for="fname">First Name</Label>
             <Input type="text" name="fname" id="fname" className="reg-input"
-              onChange={this.handleInputChange}/>
+              onChange={this.handleInputChange} required/>
           </FormGroup>
           <FormGroup>
             <Label for="lname">Last Name</Label>
             <Input type="text" name="lname" id="lname" className="reg-input"
-              onChange={this.handleInputChange}/>
+              onChange={this.handleInputChange} required/>
           </FormGroup>
-          <FormGroup id="submit-zone">
-            { submitButton }
-          </FormGroup>
-        </Form>
+        </div>
       );
+    
 
     }
+
+    displayBackArrow = () => {
+      return (
+        <div id="arrow-container">
+          <Link to="/" id="back" test="hi"><i className="fas fa-chevron-left" id="back-arrow" aria-hidden="true"></i> Back </Link>
+        </div>
+      );
+    }
+
+    displayInstructions = () => {
+      if(!this.state.registered) {
+        return (
+          <div id="teaser-text">
+            <FormText>Creating an account is the first step to drama-free parenting.&nbsp;
+              <Link to="splash">Learn More </Link>
+            </FormText>
+          </div>
+        );
+      }
+    }
+
+    render() {
+
+      if (this.state.authenticated) {
+        return (<Redirect to='calendar'/>);
+      };
+
+
+      const submitButton = this.submitButton();
+      const navButton = this.navButton();
+      const backArrow = this.displayBackArrow();
+      const displayForm = this.displayForm()
+      const displayInstructions = this.displayInstructions();
+
+      return (
+        <Jumbotron id="reg-container">
+        <div id="form-nav-container">
+          <div id="arrows-container">
+              { backArrow }
+              { navButton }
+          </div>
+          <Container id="reg-form-container">
+            <Container id="reg-teaser">
+              <div>
+                <p className="reg-form-teaser">Family Day.</p>
+                <p className="reg-form-teaser">Fully Planned.</p>
+              </div>
+                { displayInstructions }
+            </Container>
+            <hr></hr>
+                <Form id="reg-form" aria-label="registration-form" aria-describedby="reg-form-label" autoComplete="off">
+                  { displayForm }
+                <FormGroup id="submit-zone">
+                  { submitButton }
+                </FormGroup>
+              </Form>
+          </Container>
+        </div>
+      </Jumbotron>
+      );
+    }
+
+
+
+
+
+
+
 
     redirectToCalendar = () => {
       return (
@@ -264,6 +349,8 @@ class SignUp extends Component {
       if (this.state.authenticated) {
         return (<Redirect to='calendar'/>);
       };
+
+      console.log(this.state.registered);
 
 
       const submitButton = this.submitButton();
