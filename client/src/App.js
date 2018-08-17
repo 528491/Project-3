@@ -33,15 +33,17 @@ class App extends Component {
     super(props)
     this.state = {
       tests: [],
-      authenticated: !!localStorage.getItem('access')
+      authenticated: !!localStorage.getItem('access'),
+      user: null
+
     }
   }
 
-  state = {
-    tests: [],
-    authenticated: false,
-    user: null
-  }
+  // state = {
+  //   tests: [],
+  //   authenticated: false,
+  //   user: null
+  // }
 
   authenticated() {
     return this.state.authenticated
