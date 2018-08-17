@@ -318,9 +318,9 @@ class SignUp extends Component {
             <hr></hr>
                 <Form id="reg-form" aria-label="registration-form" aria-describedby="reg-form-label" autoComplete="off">
                   { displayForm }
-                <FormGroup id="submit-zone">
-                  { submitButton }
-                </FormGroup>
+                  <FormGroup id="submit-zone">
+                    { submitButton }
+                  </FormGroup>
               </Form>
           </Container>
         </div>
